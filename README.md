@@ -1,8 +1,14 @@
+<p align="center">
+  <img src="./respira-cowork-v1.png" alt="Respira for WordPress, in Cowork" width="720" />
+</p>
+
 # Respira for Cowork
 
 AI editing for WordPress sites across 12 page builders, in Anthropic's Claude Cowork.
 
 Edit live WordPress sites safely from the Claude desktop app. No terminal required. Snapshot before edit, render validation, and one click rollback are built in.
+
+Current version: **v1.0.7**. Live at [respira.press/cowork](https://respira.press/cowork).
 
 ## What you get
 
@@ -27,7 +33,7 @@ To install manually from this repo, in Cowork:
 After installing, run `/respira:connect-site` and follow the prompts. You will need:
 
 - A WordPress site you can install plugins on.
-- A Respira account (sign up at https://respira.press, free Lite tier available, no card required for the 7 day Maker trial).
+- A Respira account. Sign up at https://respira.press for a 7 day Maker trial. No credit card required.
 
 The connect command walks you through the WordPress plugin install, the API key, the config file, and a connection test. It is designed for someone who has never used a terminal.
 
