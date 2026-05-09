@@ -1,13 +1,16 @@
 {
   "name": "respira-wordpress",
-  "version": "1.0.0",
+  "displayName": "Respira for WordPress Claude Co-work plugin",
+  "version": "1.0.1",
   "description": "AI editing for WordPress sites across 12 page builders. Edit live sites safely with snapshot before edit, render validation, and one click rollback. Built for agencies, freelancers, and anyone managing WordPress sites with AI.",
   "author": {
-    "name": "Mihai Dragomirescu (Respira)"
+    "name": "respira.press",
+    "url": "https://respira.press"
   },
   "homepage": "https://respira.press",
   "repository": "https://github.com/respira-press/cowork-plugin-wordpress",
   "license": "MIT",
+  "icon": "icon.png",
   "keywords": [
     "wordpress",
     "page-builders",
