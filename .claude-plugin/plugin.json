@@ -1,0 +1,25 @@
+{
+  "name": "respira-wordpress",
+  "version": "1.0.0",
+  "description": "AI editing for WordPress sites across 12 page builders. Edit live sites safely with snapshot before edit, render validation, and one click rollback. Built for agencies, freelancers, and anyone managing WordPress sites with AI.",
+  "author": {
+    "name": "Mihai Dragomirescu (Respira)"
+  },
+  "homepage": "https://respira.press",
+  "repository": "https://github.com/respira-press/cowork-plugin-wordpress",
+  "license": "MIT",
+  "keywords": [
+    "wordpress",
+    "page-builders",
+    "elementor",
+    "divi",
+    "bricks",
+    "oxygen",
+    "breakdance",
+    "beaver-builder",
+    "ai-editing",
+    "agency",
+    "design",
+    "marketing"
+  ]
+}

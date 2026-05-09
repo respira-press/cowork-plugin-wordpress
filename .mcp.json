@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "respira-wordpress": {
+      "command": "npx",
+      "args": ["-y", "@respira/wordpress-mcp-server"],
+      "env": {
+        "RESPIRA_CONFIG_FILE": "${HOME}/.respira/cowork-config.json"
+      }
+    }
+  }
+}
