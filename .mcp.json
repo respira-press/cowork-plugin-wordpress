@@ -4,7 +4,9 @@
       "command": "npx",
       "args": ["-y", "@respira/wordpress-mcp-server"],
       "env": {
-        "RESPIRA_CONFIG_FILE": "${HOME}/.respira/cowork-config.json"
+        "RESPIRA_CONFIG_FILE": "${HOME}/.respira/cowork-config.json",
+        "RESPIRA_AGENT_CLIENT": "cowork",
+        "RESPIRA_AGENT_TRANSPORT": "cowork-mcp"
       }
     }
   }
