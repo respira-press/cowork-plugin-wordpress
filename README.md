@@ -4,19 +4,27 @@
 
 # Respira for Cowork
 
-AI editing for WordPress sites across 12 page builders, in Anthropic's Claude Cowork.
+Edit live WordPress sites from inside Cowork. Tell Claude what you want changed and Respira routes the edit to the right page builder, snapshots before writing, and validates that the page actually rendered correctly. Twelve page builders supported (Elementor, Divi 4, Divi 5, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome, Brizy, Thrive Architect, Gutenberg). One-click rollback always available, no FTP or database access needed.
 
-Edit live WordPress sites safely from the Claude desktop app. No terminal required. Snapshot before edit, render validation, and one click rollback are built in.
+Built for the agency owners, designers, and freelancers who manage WordPress sites for clients and want to delegate the editing work to Claude without giving up control.
 
-Current version: **v1.0.8**. Live at [respira.press/cowork](https://respira.press/cowork).
+Current version: **v1.0.9**. Live at [respira.press/cowork](https://respira.press/cowork).
 
-## What you get
+## What you can do
 
-- **8 slash commands** for WordPress editing without writing prompts.
-- **30 auto activating skills** covering editing safety, builder detection, multi site context, 14 builder to builder migration paths, SEO and AEO amplification, AI image optimization, WooCommerce health checks, mobile experience reports, technical debt audits, internal link building, content portability, and more.
-- **1 visual reviewer sub agent** that shows you what changed after every edit.
-- **Full access to all 180+ Respira MCP tools** through the bundled MCP server (`@respira/wordpress-mcp-server`).
-- **All 12 supported page builders**: Elementor, Divi 4, Divi 5, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome UX Builder, Brizy, Thrive Architect, and Gutenberg.
+**Edit a page without opening WP admin.** "Update the headline on my client's homepage to say 'spring collection arriving' instead of 'new arrivals'." Cowork takes that sentence and Respira finds the right element, snapshots the page, makes the edit, and verifies the new headline is actually rendering on the live site. Total time: about thirty seconds.
+
+**Migrate a client site between page builders.** A client wants to leave Elementor for Bricks (or Divi for Gutenberg, or WPBakery for Bricks, or any of sixteen supported migration paths). Tell Claude which site, which target builder, and Respira works through the pages section by section, builds native modules in the new builder, and validates each one. Migration work that used to take a week happens in an afternoon.
+
+**Audit a site before a client meeting.** "Run a full health check on acme.com and tell me what to fix first." Respira returns a prioritized list covering SEO, AI search visibility (how the site shows up in ChatGPT, Claude, Perplexity, Gemini), accessibility, mobile experience, technical debt, and WooCommerce health. Most of the obvious problems have one-click fixes attached.
+
+**Clean up a media library in one pass.** "Optimize all the images on this site." Respira rewrites missing alt text in the site's voice, compresses oversized images, and standardizes dimensions for performance. Each change is snapshotted, so anything can be rolled back if it doesn't look right.
+
+**Manage ten client sites from one conversation.** You are working in Cowork with ten WordPress sites connected. Mention "the testimonials page on the bakery site" and Respira knows which install you mean. Every edit across every site is snapshotted; `/respira:undo-last-change` rolls back the most recent change on whichever site you just touched. The multi-site context follows the conversation naturally.
+
+## What's included
+
+Eight slash commands for the most common workflows. Thirty auto-activating skills that fire when relevant, including sixteen builder-to-builder migration paths. A visual reviewer sub-agent that opens the page in your browser after every edit and shows you what changed. Full access to all 180+ Respira MCP tools through the bundled MCP server (`@respira/wordpress-mcp-server`). All twelve supported page builders: Elementor, Divi 4, Divi 5, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome UX Builder, Brizy, Thrive Architect, and Gutenberg.
 
 ## Install
 

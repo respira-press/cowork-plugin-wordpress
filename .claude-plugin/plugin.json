@@ -1,6 +1,6 @@
 {
   "name": "respira",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "AI editing for WordPress sites across 12 page builders. Edit live sites safely with snapshot before edit, render validation, and one click rollback. Built for agencies, freelancers, and anyone managing WordPress sites with AI.",
   "author": {
     "name": "respira.press",
