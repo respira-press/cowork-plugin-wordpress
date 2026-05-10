@@ -45,15 +45,17 @@ Open a new Cowork conversation and run:
 The command walks you through:
 
 1. Installing the Respira plugin on your WordPress site (one time per site).
-2. Generating a Respira API key (one time per site).
-3. Saving credentials to `~/.respira/cowork-config.json` (one time, automatically).
+2. Downloading your `config.json` from https://respira.press/dashboard (one time per machine).
+3. Saving it to `~/.respira/config.json` (one time, automatically).
 4. Testing the connection.
+
+If you already use Respira through Claude Desktop, the `.mcpb` already put a working `~/.respira/config.json` on your computer. Cowork picks it up automatically. No re-paste, no second config file.
 
 It takes about 5 minutes. The command is written for someone who has never installed a WordPress plugin before. You can run it more than once to add additional sites.
 
 ## What gets stored where
 
-- Your WordPress site URL and API key are saved on your computer at `~/.respira/cowork-config.json`. They never leave your machine except to talk to your own WordPress site.
+- Your WordPress site URL and API key are saved on your computer at `~/.respira/config.json`. They never leave your machine except to talk to your own WordPress site.
 - The Respira plugin on your WordPress site stores nothing about you outside your own site.
 - The bundled MCP server runs locally as a Node.js process. It does not phone home.
 
@@ -105,9 +107,9 @@ Email word@respira.press with what you tried and what you saw. The Respira found
 
 ## Uninstalling
 
-Remove the plugin from Cowork's Customize panel. The MCP server stops running. Your `~/.respira/cowork-config.json` and your WordPress plugin remain untouched. To remove those too:
+Remove the plugin from Cowork's Customize panel. The MCP server stops running. Your `~/.respira/config.json` and your WordPress plugin remain untouched. To remove those too:
 
-1. Delete `~/.respira/cowork-config.json` (this removes saved site credentials).
+1. Delete `~/.respira/config.json` (this removes saved site credentials).
 2. In WordPress admin, deactivate and delete the Respira plugin (this removes Respira from your site).
 
 Nothing about your WordPress content is affected by uninstalling the plugin. Your site continues to work normally.
