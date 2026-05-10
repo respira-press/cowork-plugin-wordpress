@@ -8,7 +8,7 @@ Edit live WordPress sites from inside Cowork. Tell Claude what you want changed 
 
 Built for the agency owners, designers, and freelancers who manage WordPress sites for clients and want to delegate the editing work to Claude without giving up control.
 
-Current version: **v1.1.0**. Live at [respira.press/cowork](https://respira.press/cowork).
+Current version: **v1.1.1**. Live at [respira.press/cowork](https://respira.press/cowork).
 
 ## What you can do
 
