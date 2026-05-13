@@ -31,21 +31,37 @@ Check whether `~/.respira/config.json` exists. Two paths:
 - **It exists.** Read it. If it has at least one site, call `respira_diagnose_connection` to test the first site. If that works, you're done — go to step 4 and tell the user they're already connected.
 - **It does not exist.** Continue to step 2.
 
-### 2. Point the user to their respira.press dashboard
+### 2. Get the config from the dashboard and paste it here
 
 Tell the user, in plain language:
 
-> "you need a small config file on your computer that tells Cowork which sites you have and what your access key is. the easiest way to get that file is to download it from your respira.press dashboard. takes about a minute."
+> "you need a small config file that tells Cowork which sites you have and what your access key is. i can set that up for you right here. takes about a minute."
 >
 > 1. open https://respira.press/dashboard in any browser. sign in if needed.
 > 2. on the dashboard, look for a button labelled **Download Cowork config**. click it. you'll get a file named `config.json`.
-> 3. save the file to `~/.respira/config.json` on your computer.
->    - on Mac: open Finder, press `Cmd + Shift + G`, type `~/.respira` and hit return. if the folder doesn't exist, create it. drop the file in.
->    - on Windows: open File Explorer, type `%USERPROFILE%\.respira` in the address bar. if the folder doesn't exist, create it. drop the file in.
->    - on Linux: `mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/`.
-> 4. tell me when the file is in place.
+> 3. open that file:
+>    - on Mac: the file lands in Downloads. double-click it. it opens in TextEdit (it will look like a short block of text starting with `{`).
+>    - on Windows: right-click the file and choose **Open with** then **Notepad**.
+> 4. press `Cmd + A` (Mac) or `Ctrl + A` (Windows) to select all the text, then `Cmd + C` / `Ctrl + C` to copy it.
+> 5. paste the text here.
 
-Once they confirm, go to step 3.
+Once they paste, validate that it is valid JSON with at least one site. It should look like:
+
+```json
+{
+  "sites": [
+    { "url": "https://their-site.com", "apiKey": "respira_..." }
+  ]
+}
+```
+
+If the shape is wrong or it is not valid JSON, tell them in plain language what you expected and ask them to try the paste again.
+
+Once the JSON is valid, write it to `~/.respira/config.json` using your file-write capability (create the `~/.respira/` directory if it does not exist). Tell the user:
+
+> "got it. i've saved the config file for you. you don't need to touch any folders."
+
+Then go to step 3.
 
 ### 3. Restart Cowork so it picks up the new config
 
