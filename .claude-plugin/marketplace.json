@@ -1,0 +1,34 @@
+{
+  "name": "respira",
+  "owner": {
+    "name": "respira.press",
+    "email": "word@respira.press"
+  },
+  "description": "AI editing for WordPress sites across 16 page builders, in Cowork.",
+  "plugins": [
+    {
+      "name": "respira",
+      "source": { "source": "github", "repo": "respira-press/cowork-plugin-wordpress" },
+      "description": "AI editing for WordPress sites across 16 page builders. Edit live sites safely with snapshot before edit, render validation, and one click rollback.",
+      "version": "1.1.2",
+      "author": { "name": "respira.press" },
+      "homepage": "https://respira.press",
+      "repository": "https://github.com/respira-press/cowork-plugin-wordpress",
+      "license": "MIT",
+      "keywords": [
+        "wordpress",
+        "page-builders",
+        "elementor",
+        "divi",
+        "bricks",
+        "oxygen",
+        "breakdance",
+        "beaver-builder",
+        "ai-editing",
+        "agency",
+        "design",
+        "marketing"
+      ]
+    }
+  ]
+}

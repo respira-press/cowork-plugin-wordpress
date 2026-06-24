@@ -4,11 +4,11 @@
 
 # Respira for Cowork
 
-Edit live WordPress sites from inside Cowork. Tell Claude what you want changed and Respira routes the edit to the right page builder, snapshots before writing, and validates that the page actually rendered correctly. Twelve page builders supported (Elementor, Divi 4, Divi 5, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome, Brizy, Thrive Architect, Gutenberg). One-click rollback always available, no FTP or database access needed.
+Edit live WordPress sites from inside Cowork. Tell Claude what you want changed and Respira routes the edit to the right page builder, snapshots before writing, and validates that the page actually rendered correctly. Sixteen page builders supported (Gutenberg, Elementor, Divi 4, Divi 5, Bricks, Oxygen Classic, Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks, GenerateBlocks), plus SeedProd audit-only. One-click rollback always available, no FTP or database access needed.
 
 Built for the agency owners, designers, and freelancers who manage WordPress sites for clients and want to delegate the editing work to Claude without giving up control.
 
-Current version: **v1.1.1**. Live at [respira.press/cowork](https://respira.press/cowork).
+Current version: **v1.1.2**. Live at [respira.press/cowork](https://respira.press/cowork).
 
 ## What you can do
 
@@ -24,7 +24,7 @@ Current version: **v1.1.1**. Live at [respira.press/cowork](https://respira.pres
 
 ## What's included
 
-Eight slash commands for the most common workflows. Thirty auto-activating skills that fire when relevant, including sixteen builder-to-builder migration paths. A visual reviewer sub-agent that opens the page in your browser after every edit and shows you what changed. Full access to all 180+ Respira MCP tools through the bundled MCP server (`@respira/wordpress-mcp-server`). All twelve supported page builders: Elementor, Divi 4, Divi 5, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome UX Builder, Brizy, Thrive Architect, and Gutenberg.
+Eight slash commands for the most common workflows. Thirty auto-activating skills that fire when relevant, including sixteen builder-to-builder migration paths. A visual reviewer sub-agent that opens the page in your browser after every edit and shows you what changed. Full access to all 200+ Respira MCP tools through the bundled MCP server (`@respira/wordpress-mcp-server`). All sixteen supported page builders: Gutenberg, Elementor, Divi 4, Divi 5, Bricks, Oxygen Classic, Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks, and GenerateBlocks (plus SeedProd, audit-only).
 
 ## Install
 

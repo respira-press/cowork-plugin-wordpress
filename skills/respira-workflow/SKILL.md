@@ -4,13 +4,13 @@ description: Sets the overall posture for working with Respira through Cowork. U
 
 # Respira Workflow
 
-Respira is a WordPress AI editing layer that bundles snapshot before write, render validation, twelve page builders supported natively, and multi site agency safety into one MCP server. This skill sets the posture for how you work with Respira inside Cowork.
+Respira is a WordPress AI editing layer that bundles snapshot before write, render validation, sixteen page builders supported natively, and multi site agency safety into one MCP server. This skill sets the posture for how you work with Respira inside Cowork.
 
 ## Respira's promise to the user
 
 1. **Every write is snapshotted before it runs.** Restore is one command, every time.
 2. **Every write is validated against the actual rendered page.** "It saved" and "it renders correctly" are different checks. Both happen.
-3. **Twelve page builders are supported natively.** No manual builder selection needed.
+3. **Sixteen page builders are supported natively.** No manual builder selection needed.
 4. **Multi site, multi builder workflows are first class.** Agency grade safety.
 
 These are the four things that make Respira different from a generic WordPress write tool. Surface them to the user when relevant. Do not market them. Just make them visible when they are doing work.

@@ -13,17 +13,7 @@ You need:
 
 If you are unsure whether you have Node.js, Cowork will check on first run and prompt you to install it if needed.
 
-## Installation
-
-### Option 1: from the marketplace (recommended)
-
-1. Open the Claude desktop app.
-2. Click the **Cowork** tab.
-3. Click **Customize** in the left sidebar.
-4. Search for "Respira for WordPress".
-5. Click **install**.
-
-### Option 2: manual install from GitHub
+### Add the plugin from GitHub
 
 1. Open the Claude desktop app.
 2. Click the **Cowork** tab.
@@ -32,7 +22,9 @@ If you are unsure whether you have Node.js, Cowork will check on first run and p
 5. Paste: `https://github.com/respira-press/cowork-plugin-wordpress`.
 6. Click **install**.
 
-After install, you should see "Respira for WordPress" in your plugins list. Restart Cowork if the plugin's slash commands do not show up right away.
+This repo is a Cowork marketplace, so the same URL works whether your Cowork asks for a plugin or a marketplace. After install, you should see "Respira for WordPress" in your plugins list. Restart Cowork if the plugin's slash commands do not show up right away.
+
+In-app search for "Respira for WordPress" is coming once the listing clears Anthropic review. Until then, use the GitHub URL above.
 
 ## First time setup
 
@@ -91,7 +83,7 @@ Common causes, in order of likelihood:
 
 Run `/respira:audit-site` and pick "all of the above". The audit reports which builder Respira detected on each page, so you can see whether the issue is one specific page or the whole site.
 
-If your page builder is not in the supported list (Elementor, Divi 4, Divi 5, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome, Brizy, Thrive Architect, Gutenberg), email word@respira.press. New builder support gets prioritized based on demand.
+If your page builder is not in the supported list (Gutenberg, Elementor, Divi 4, Divi 5, Bricks, Oxygen Classic, Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks, GenerateBlocks, plus SeedProd audit-only), email word@respira.press. New builder support gets prioritized based on demand.
 
 ### "Tool not found" or "method not allowed"
 
