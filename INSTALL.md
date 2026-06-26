@@ -13,18 +13,28 @@ You need:
 
 If you are unsure whether you have Node.js, Cowork will check on first run and prompt you to install it if needed.
 
-### Add the plugin from GitHub
+### Install in Claude Desktop (Cowork)
 
-1. Open the Claude desktop app.
-2. Click the **Cowork** tab.
-3. Click **Customize** in the left sidebar.
-4. Click **Add Custom Plugin** at the bottom.
-5. Paste: `https://github.com/respira-press/cowork-plugin-wordpress`.
-6. Click **install**.
+1. In Claude, open **Cowork → Customize → Plugins**.
+2. Click the **Personal** tab (next to Anthropic / Partners), then the **+** button.
+3. Choose **Add marketplace → Add from a repository** and enter: `respira-press/cowork-plugin-wordpress` (owner/repo, or the full git URL).
+4. Click **Sync**, then on the Respira plugin page click **Install**.
+5. When the **"This plugin includes local MCP servers"** notice appears, that is expected, it is the `respira-wordpress` connector running locally. Click **Continue**.
+6. Run `/respira:connect-site` to connect your WordPress sites.
 
-This repo is a Cowork marketplace, so the same URL works whether your Cowork asks for a plugin or a marketplace. After install, you should see "Respira for WordPress" in your plugins list. Restart Cowork if the plugin's slash commands do not show up right away.
+Prefer a zip? Download the latest source from the repo and load it via **+ → Upload plugin** instead.
 
-In-app search for "Respira for WordPress" is coming once the listing clears Anthropic review. Until then, use the GitHub URL above.
+Note: the **Anthropic / Partners** tabs will not surface "Respira for WordPress" until the directory listing clears Anthropic review. The **Personal → Add marketplace** route above is the live path today.
+
+### Install in Claude Code (terminal or VS Code)
+
+```
+/plugin marketplace add respira-press/cowork-plugin-wordpress
+/plugin install respira
+/respira:connect-site
+```
+
+`/plugin` works across the Claude Code terminal and VS Code. It is not available on claude.ai/code (web); use Claude Desktop (Cowork) or Claude Code there instead.
 
 ## First time setup
 

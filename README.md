@@ -28,13 +28,13 @@ Eight slash commands for the most common workflows. Thirty auto-activating skill
 
 ## Install
 
-From the Anthropic plugin marketplace, search for "Respira for WordPress" and click install.
+**Claude Desktop (Cowork).** In Claude, open **Cowork > Customize > Plugins**, click the **Personal** tab, then **+ > Add marketplace > Add from a repository** and enter `respira-press/cowork-plugin-wordpress`. Click **Sync**, then **Install**. When the "This plugin includes local MCP servers" notice appears, click **Continue**.
 
-To install manually from this repo, in Cowork:
+**Claude Code (terminal or VS Code).** Run `/plugin marketplace add respira-press/cowork-plugin-wordpress`, then `/plugin install respira`.
 
-1. Go to **Customize > Plugins > Add Custom Plugin**.
-2. Paste this URL: `https://github.com/respira-press/cowork-plugin-wordpress`.
-3. Click install.
+Then run `/respira:connect-site`.
+
+Note: the Anthropic / Partners marketplace tabs will not list Respira until the directory listing clears Anthropic review. The Personal route above is the live path today. (`/plugin` is not available on claude.ai/code web.)
 
 ## Setup
 
