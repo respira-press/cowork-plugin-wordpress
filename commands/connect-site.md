@@ -57,11 +57,18 @@ Once they paste, validate that it is valid JSON with at least one site. It shoul
 
 If the shape is wrong or it is not valid JSON, tell them in plain language what you expected and ask them to try the paste again.
 
-Once the JSON is valid, write it to `~/.respira/config.json` using your file-write capability (create the `~/.respira/` directory if it does not exist). Tell the user:
+Once the JSON is valid, get it into `~/.respira/config.json`. IMPORTANT: Cowork can only write to folders the user has granted this session access to, and a fresh chat usually has NO access to the home directory. Do not assume you can write to `~/.respira/`.
 
-> "got it. i've saved the config file for you. you don't need to touch any folders."
+1. Try to write the config to `~/.respira/config.json` (create the `~/.respira/` directory if needed). If the write actually succeeds, tell the user "got it, i've saved it for you" and go to step 3.
+2. If the write fails because that folder is outside what this session can reach, do not stop and do not pretend it worked. Save a clean copy somewhere you CAN write (or hand it back as a downloadable file), then give the user one small step to move it into place. On Mac or Linux that is a single Terminal line:
 
-Then go to step 3.
+   ```
+   mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/config.json
+   ```
+
+   Tell them to swap `~/Downloads/config.json` for wherever the file actually is. If they would rather not use Terminal, or are on Windows, say it plainly: create a folder named `.respira` in your home directory and put `config.json` inside it. Then go to step 3.
+
+Never tell the user you saved the file unless the write truly succeeded.
 
 ### 3. Restart Cowork so it picks up the new config
 

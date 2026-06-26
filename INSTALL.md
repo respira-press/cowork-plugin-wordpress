@@ -48,8 +48,8 @@ The command walks you through:
 
 1. Installing the Respira plugin on your WordPress site (one time per site).
 2. Downloading your `config.json` from https://respira.press/dashboard and pasting its contents here (one time per machine).
-3. Claude saves the file for you. No filesystem navigation, no hidden folders.
-4. Testing the connection.
+3. Getting that config into `~/.respira/config.json`, the file Cowork reads on startup. If Cowork has access to that folder it writes it for you; if not (a fresh chat usually doesn't), it gives you one short Terminal line to move it into place: `mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/config.json`. No Terminal? Create a `.respira` folder in your home directory and drop `config.json` in.
+4. Restarting Cowork (open a fresh chat) and testing the connection.
 
 If you already use Respira through Claude Desktop, the `.mcpb` already put a working `~/.respira/config.json` on your computer. Cowork picks it up automatically. No re-paste, no second config file.
 
