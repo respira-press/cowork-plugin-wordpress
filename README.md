@@ -60,7 +60,7 @@ Respira sits between Claude and your WordPress sites. When you ask Claude to do 
 
 Every edit is snapshotted before it runs. Restore is one command, always.
 
-## The thirty skills, in plain language
+## The forty-one skills, in plain language
 
 All skills auto activate when the conversation matches their description. You do not have to invoke them.
 
