@@ -8,10 +8,19 @@ You need:
 
 - The Claude desktop app installed (download at https://claude.ai/download).
 - Cowork enabled in your Claude account (Pro or Max plan).
-- Node.js 18 or newer on your computer (Cowork installs this automatically if missing).
+- Node.js 18 or newer on your computer. Install it yourself before you start, from https://nodejs.org.
 - A WordPress site where you can install plugins (almost any WordPress site, unless you are on a fully managed host that locks plugin installs).
 
-If you are unsure whether you have Node.js, Cowork will check on first run and prompt you to install it if needed.
+Check Node before anything else. Open a terminal, or PowerShell on Windows, and run:
+
+```
+node -v
+npx -v
+```
+
+Both should print a version. If either says "not recognized" or "command not found", install Node from https://nodejs.org and come back to this page.
+
+This step is not optional and nothing will tell you that you skipped it. Without Node, Cowork cannot start the Respira server, and the way that failure appears is that no Respira connector shows up at all: no error, no failed entry, nothing in the connector list. There is no message anywhere pointing at Node. Reported by a customer on Windows who lost an evening to it, and this page previously claimed Cowork would install Node for you, which it does not.
 
 ### Install in Claude Desktop (Cowork)
 
@@ -67,11 +76,31 @@ It takes about 5 minutes. The command is written for someone who has never insta
 
 The Respira MCP server is a Node.js process bundled as the npm package `@respira/wordpress-mcp-server`. If it fails to start:
 
-1. Check that Node.js 18 or newer is installed. Open Terminal and run `node --version`.
-2. If it is missing, install from https://nodejs.org or via Homebrew (`brew install node`).
-3. Restart the Claude desktop app.
+1. Check that Node.js 18 or newer is installed. Run `node -v` and `npx -v`. Both must print a version.
+2. If either is missing, install from https://nodejs.org. On a Mac you can also use Homebrew (`brew install node`).
+3. Restart your computer, not just the Claude desktop app. See below.
 
-If it still fails, try running the server manually in Terminal:
+### No Respira connector appears at all
+
+If the connector list shows your other tools but no Respira entry, and no Respira tools are offered, the server was never started rather than started and failed. On Windows this is almost always one of four things, in this order:
+
+1. **Node is not installed.** `node -v` says "not recognized". Install from https://nodejs.org.
+
+2. **PowerShell is blocking npm and npx.** On Windows these ship as `.ps1` scripts, and PowerShell refuses to run scripts by default, so you get "running scripts is disabled on this system" even though Node is installed correctly. Fix it with:
+
+   ```
+   Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+   ```
+
+3. **Your computer needs a full restart.** This is the one that costs the most time. After installing Node, quitting and reopening the Claude desktop app is NOT enough. The app keeps a copy of the system PATH from when it started, and on Windows that copy can survive an app restart, so it still cannot find the Node you just installed. Restart the computer.
+
+4. **Only then** check the config file and the plugin.
+
+Worth knowing about step 1: the Node installer for Windows offers an optional "tools for native modules" step that also installs Chocolatey, Python and Visual Studio Build Tools. That is normal behaviour from Node's own installer and not something Respira asks for. It is noisy but not suspicious.
+
+This whole sequence came from a customer who hit all four in a row and wrote it up afterwards. Any one of them alone is enough to produce the same silent result.
+
+If it still fails, try running the server manually in a terminal:
 
 ```
 npx -y @respira/wordpress-mcp-server
