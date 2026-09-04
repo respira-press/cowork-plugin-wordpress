@@ -1,0 +1,51 @@
+{
+  "name": "HTML to Breakdance",
+  "slug": "html-to-breakdance",
+  "icon": "🧩",
+  "category": "migration",
+  "description": "Convert raw HTML/CSS into native Breakdance elements in _breakdance_data. Emits fully qualified EssentialElements types so nothing gets skip-rendered, binds colors, typography and spacing to Breakdance Variables, and reports every CodeBlock fallback instead of hiding it.",
+  "author": "Respira Team",
+  "author_url": "https://respira.press",
+  "trigger": "convert this html to breakdance",
+  "requires_respira": true,
+  "requires_woocommerce_addon": false,
+  "requires_accessibility_addon": false,
+  "is_read_only": false,
+  "is_duplicate_first": true,
+  "version": "1.0.0",
+  "last_updated": "2026-08-19",
+  "tools_used": [
+    "respira_get_active_site",
+    "respira_get_builder_info",
+    "respira_get_design_direction",
+    "respira_get_option",
+    "respira_convert_html_to_builder",
+    "respira_build_page",
+    "respira_create_page_duplicate",
+    "respira_inject_builder_content",
+    "respira_list_snapshots",
+    "respira_extract_builder_content",
+    "respira_list_design_tokens",
+    "respira_find_element",
+    "respira_update_element",
+    "respira_check_design"
+  ],
+  "detects": [
+    "active_breakdance_version",
+    "breakdance_themeless_mode",
+    "design_system_tokens",
+    "breakdance_variables",
+    "empty_duplicate_baseline_snapshot",
+    "unregistered_element_types",
+    "codeblock_fallback_nodes",
+    "external_assets",
+    "form_elements"
+  ],
+  "generates": [
+    "essential_elements_tree",
+    "variable_bound_design_settings",
+    "codeblock_fallback_report",
+    "external_asset_warnings",
+    "new_or_duplicate_page"
+  ]
+}

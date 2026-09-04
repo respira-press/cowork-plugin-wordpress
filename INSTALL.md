@@ -35,6 +35,29 @@ Prefer a zip? Download the latest source from the repo and load it via **+ → U
 
 Note: the **Anthropic / Partners** tabs will not surface "Respira for WordPress" until the directory listing clears Anthropic review. The **Personal → Add marketplace** route above is the live path today.
 
+### Teams: everyone installs it themselves
+
+There is no organisation-wide install yet, for the reason just above: an
+organisation plugin has to come from a listed marketplace, and Respira is not
+in the Anthropic directory yet. Adding it on your own account does **not**
+hand it to your team, and the organisation Plugins screen will not offer it.
+
+So each person repeats steps 1 to 6 on their own machine, and each person runs
+`/respira:connect-site` for themselves. The config it writes lives at
+`~/.respira/config.json` on that person's computer, so one teammate's setup is
+never visible to another.
+
+Two things worth telling a team before they start:
+
+- **The first launch is slow.** The connector downloads the Respira MCP server
+  the first time it runs, which can take the better part of a minute on a cold
+  machine. If the first message in a fresh session says the Respira tools are
+  unavailable, the download had not finished. Say "try again" in the same
+  conversation and it connects. It is only slow once per machine per version.
+- **The setup code expires after 5 minutes.** It is short-lived on purpose,
+  because it ends up sitting in a chat transcript. Generate it when you are
+  ready to paste it, not before, and generate a fresh one if you get held up.
+
 ### Install in Claude Code (terminal or VS Code)
 
 ```

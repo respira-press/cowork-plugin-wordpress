@@ -1,0 +1,55 @@
+{
+  "name": "Art Direction",
+  "slug": "art-direction",
+  "icon": "🖼️",
+  "category": "intelligence",
+  "description": "The taste layer for every page an agent builds. Loads the site's saved Art Direction before any visual work, plans tokens in two passes against the direction's donts and the known AI-default aesthetics, builds with tokens preserved, checks the result with respira_check_design (rendered mode on published pages), and mints a live preview so the human watches the real page. Also the import lane for Claude Design output and other design-system documents.",
+  "author": "Respira Team",
+  "author_url": "https://respira.press",
+  "trigger": "make it look better",
+  "requires_respira": true,
+  "requires_woocommerce_addon": false,
+  "requires_accessibility_addon": false,
+  "is_read_only": false,
+  "is_duplicate_first": false,
+  "version": "1.1.0",
+  "last_updated": "2026-08-14",
+  "changelog": {
+    "1.1.0": "Import v2. Adds an explicit Figma Import Lane: the Figma MCP sequence (get_variable_defs/get_design_context, name-first role guessing that matches the plugin's own IMPORT_COLOR_ROLE_MAP, DTCG dry-run, then save) for agents with Figma MCP access, distinct from the dashboard's browser-side token paste at respira.press/dashboard/art-direction. Adds a worked example to the Claude Design Import Lane and documents its dashboard drop-zone counterpart (auto-detected paste, additive guidance diff).",
+    "1.0.0": "First release. The sequence: get the direction, create one before building when none exists, two-pass token planning against the donts and the three AI-default aesthetics (ai-purple gradient minimalism, warm-craft sameness, corporate-slop filler), build with preserve_tokens, check_design with rendered:true on published pages, fix every unwaived fail, mint a live preview. Includes the Claude Design import lane (DTCG dry-run first, prose into guidance, inferred:true on guesses) and waiver etiquette (owner's standing decision, never to make a check pass)."
+  },
+  "tools_used": [
+    "respira_get_design_direction",
+    "respira_list_design_directions",
+    "respira_save_design_direction",
+    "respira_activate_design_direction",
+    "respira_import_design_tokens",
+    "respira_export_design_direction",
+    "respira_apply_design_direction",
+    "respira_get_design_apply_reports",
+    "respira_check_design",
+    "respira_mint_design_preview",
+    "respira_build_page",
+    "respira_convert_html_to_builder"
+  ],
+  "detects": [
+    "active_direction_presence",
+    "direction_readiness",
+    "inferred_tokens",
+    "ai_purple_gradient_minimalism",
+    "warm_craft_sameness",
+    "corporate_slop_filler",
+    "off_palette_colors",
+    "off_palette_fonts",
+    "generic_placeholder_names",
+    "dont_violations"
+  ],
+  "generates": [
+    "design_direction_draft",
+    "two_pass_token_plan",
+    "on_direction_page_build",
+    "design_check_findings",
+    "builder_apply_reports",
+    "live_preview_url"
+  ]
+}
