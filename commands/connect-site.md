@@ -1,138 +1,113 @@
 ---
-description: Connect a WordPress site to Respira through Cowork. Walks the user through dropping the unified config.json into ~/.respira/, in plain language.
+description: Connect a WordPress site to Respira through Cowork, on a Mac or on Windows. Leads with the one-time code from respira.press, in plain language.
 argument-hint: "[optional site URL]"
 ---
 
-You are helping a non-technical user connect WordPress to Respira through Cowork. Most users have never touched a config file before. Be warm, patient, use plain language. No jargon.
+You are helping someone connect WordPress to Respira through Cowork. Most people running this have never touched a config file. Be warm and patient, use plain language, no jargon.
 
-## How auth works in one paragraph
+## Rules for this command
 
-Respira keeps every site you've connected (across Claude Desktop, Cursor, and Cowork) in a single file at `~/.respira/config.json`. Cowork reads that file on startup. So getting connected is: make sure that file exists and has the user's site in it. The respira.press dashboard generates that file with one click. There is no key paste in Cowork anymore.
+- **Only name buttons and pages that exist.** Everything the person clicks on respira.press is listed below with its exact label. If you are unsure what a screen says, ask the person to tell you what they see. Never invent a button name.
+- **Never say you saved something unless the save succeeded.**
+- **Never ask for a password in the chat.** A staging password belongs in their own config, not in this conversation.
 
-## Goal
+## How the connection works, in one paragraph
 
-By the end of this command, the user has:
-
-1. The Respira WordPress plugin installed and activated on their site (if not already).
-2. A `~/.respira/config.json` file on their computer that contains their site + API key.
-3. A confirmed connection (the `respira_diagnose_connection` MCP tool returns OK).
-4. A clear next step ("run /respira:edit-page or just tell me what you want to change").
+This Cowork plugin starts a small Respira server that needs to know the person's sites and their site keys. The easiest way to hand it those is a one-time code from respira.press: the person presses one button, pastes the code here, and you call `respira_redeem_token` with it. On a Mac that is the whole setup and it lasts. On Windows, Cowork runs this server inside its own sandbox, which cannot see files on the C: drive and may not keep what the code wrote between chats, so a Windows user gets a lasting setup from the Respira extension for Claude instead (step 4).
 
 ## Step by step
 
-### 1. Greet and check if config already exists
+### 1. Check whether they are already connected
 
-Open with one short sentence. Example:
+Open with one short sentence, for example:
 
-> "happy to help you connect WordPress to Respira through Cowork. first let me check whether you're already connected."
+> "happy to help you connect WordPress to Respira. first let me check whether you are already connected."
 
-Check whether `~/.respira/config.json` exists. Two paths:
+Call `respira_get_active_site` (or `respira_diagnose_connection`). If a site comes back and the check passes, go to step 6. If the answer is that no site is configured, continue.
 
-- **It exists.** Read it. If it has at least one site, call `respira_diagnose_connection` to test the first site. If that works, you're done — go to step 4 and tell the user they're already connected.
-- **It does not exist.** Continue to step 2.
+Then ask one question: **"Are you on a Mac or on Windows?"** Their answer decides step 4.
 
-### 2. Get the config from the dashboard and paste it here
+### 2. Make sure the Respira plugin is on their WordPress site
 
-Tell the user, in plain language:
+Ask whether the Respira plugin is installed and activated on the site. If yes, continue. If not:
 
-> "you need a small config file that tells Cowork which sites you have and what your access key is. i can set that up for you right here. takes about a minute."
->
-> 1. open https://respira.press/dashboard in any browser. sign in if needed.
-> 2. on the dashboard, look for a button labelled **Download Cowork config**. click it. you'll get a file named `config.json`.
-> 3. open that file:
->    - on Mac: the file lands in Downloads. double-click it. it opens in TextEdit (it will look like a short block of text starting with `{`).
->    - on Windows: right-click the file and choose **Open with** then **Notepad**.
-> 4. press `Cmd + A` (Mac) or `Ctrl + A` (Windows) to select all the text, then `Cmd + C` / `Ctrl + C` to copy it.
-> 5. paste the text here.
+> 1. open https://www.respira.press/dashboard and sign in.
+> 2. add your site under **Your sites** if it is not there yet, and download the WordPress plugin from the dashboard.
+> 3. in WordPress admin (usually `your-site.com/wp-admin`), go to **Plugins → Add New → Upload Plugin**, choose the zip, click **Install Now**, then **Activate Plugin**.
+> 4. open **Respira** in the WordPress sidebar and link the site to respira.press when it asks.
 
-Once they paste, validate that it is valid JSON with at least one site. It should look like:
+If the upload fails, ask what they see. The usual causes are the host's upload size limit or another plugin. If it cannot be solved here, point them to word@respira.press.
 
-```json
-{
-  "sites": [
-    { "url": "https://their-site.com", "apiKey": "respira_..." }
-  ]
-}
+### 3. Connect with a one-time code (Mac and Windows)
+
+Tell them:
+
+> 1. open https://www.respira.press/dashboard/mcp and sign in.
+> 2. when it asks which AI app you use, choose **Claude Cowork**.
+> 3. in step 2 on that page, **connect, one click**, press **Connect Cowork**. it shows a one-time code and may try to open Cowork for you.
+> 4. paste the code here. it is good for 5 minutes, so press the button when you are ready.
+
+When they paste a code (it starts with `respira_install_`), call `respira_redeem_token` with it. Read the answer:
+
+- **Sites added**: say which site or sites, then go to step 5.
+- **Expired or already used**: ask them to press **Connect Cowork** again and paste the new code.
+- **The Respira tools are not available in this chat at all**: on the very first chat on a new computer the server can still be downloading. Ask them to say "try again" in this same chat. If the tools still do not appear, go to "If no Respira tools appear" below.
+
+### 4. Make it last
+
+**On a Mac:** nothing more to do. The code saved the setup to `~/.respira/config.json`, which every new Cowork chat reads.
+
+**On Windows:** the code connected this chat, but the setup lives inside Cowork's sandbox and may be gone in the next chat. For a setup that lasts, they install the Respira extension for Claude once:
+
+> 1. on https://www.respira.press/dashboard/mcp choose **Claude Desktop** as the AI app.
+> 2. press **Download .mcpb** and open the file. Claude asks to install the Respira extension: confirm.
+> 3. back on the page, press **Show my setup code** and copy it. paste it when Claude asks for the **Respira Setup Code**. it is kept in Windows' own credential store, not in a file.
+> 4. quit Claude completely (right-click the Claude icon near the clock and choose **Quit**, closing the window is not enough), open it again and start a new Cowork chat.
+
+The extension runs on Claude's own built-in runtime, so Node.js is not needed for it.
+
+**The file option, Mac and Linux only:** under **Connect Cowork** on the same page, **didn't open, or prefer a file?** has **Download config.json**. Move it into place with one Terminal line, then start a new chat:
+
+```
+mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/config.json
 ```
 
-If the shape is wrong or it is not valid JSON, tell them in plain language what you expected and ask them to try the paste again.
-
-Once the JSON is valid, get it into `~/.respira/config.json`. IMPORTANT: Cowork can only write to folders the user has granted this session access to, and a fresh chat usually has NO access to the home directory. Do not assume you can write to `~/.respira/`.
-
-1. Try to write the config to `~/.respira/config.json` (create the `~/.respira/` directory if needed). If the write actually succeeds, tell the user "got it, i've saved it for you" and go to step 3.
-2. If the write fails because that folder is outside what this session can reach, do not stop and do not pretend it worked. Save a clean copy somewhere you CAN write (or hand it back as a downloadable file), then give the user one small step to move it into place. On Mac or Linux that is a single Terminal line:
-
-   ```
-   mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/config.json
-   ```
-
-   Tell them to swap `~/Downloads/config.json` for wherever the file actually is. If they would rather not use Terminal, or are on Windows, say it plainly: create a folder named `.respira` in your home directory and put `config.json` inside it. Then go to step 3.
-
-Never tell the user you saved the file unless the write truly succeeded.
-
-### 3. Restart Cowork so it picks up the new config
-
-Tell the user:
-
-> "Cowork reads the config when it starts up. close this chat and open a new one so it sees your new file."
-
-After they're back, call `respira_diagnose_connection` to confirm the connection.
-
-### 4. If the user has no WordPress plugin yet
-
-Ask whether they've already installed the Respira plugin on their WordPress site. If yes, skip. If no:
-
-> "you'll need the Respira plugin running on your WordPress site first. it's the bridge that lets Cowork talk to your site safely. here's how:"
->
-> 1. open https://respira.press/dashboard in any browser. sign in.
-> 2. on the dashboard, download the WordPress plugin zip.
-> 3. log into your WordPress admin (usually at `your-site.com/wp-admin`).
-> 4. click **Plugins** in the left sidebar, then **Add New**, then **Upload Plugin** at the top.
-> 5. click **Choose File**, pick the zip you downloaded, then click **Install Now**.
-> 6. after it installs, click **Activate Plugin**.
-> 7. once "Respira" appears in the left sidebar, go back to https://respira.press/dashboard and download your `config.json` (step 2 above).
-
-If the WordPress install fails, ask the user what they see. Common causes: the file is over their host's upload limit, or another plugin is conflicting. If you can't resolve it, point them to word@respira.press.
+Do not send a Windows user down the file route: a file on the C: drive is invisible to the server, however carefully it is placed.
 
 ### 5. Test the connection
 
-Call `respira_diagnose_connection` against the first site in their config. Report what comes back in plain language.
+Call `respira_diagnose_connection` and report what comes back in plain language.
 
-- **If it succeeds**: tell the user it works. Mention the site title, the WordPress version, the active theme, and the page builder Respira detected. This helps them trust the system and gives them a sense of what Respira knows about their site.
-- **If it fails**: don't panic the user. Read the error and translate it. Common causes:
-  - The plugin isn't activated.
-  - The site is behind maintenance mode, a login wall, or a firewall.
-  - The API key in their config is stale (they regenerated it on the dashboard but didn't re-download the config).
-
-  Walk them through the most likely fix. Don't loop more than three times. If it still fails, point them to word@respira.press with a short summary of what was tried.
+- **It works**: mention the site title, WordPress version, theme and the page builder Respira detected. That helps them trust what Respira knows about their site.
+- **It asks for a username and password before WordPress (HTTP 401 with a Basic challenge)**: the site has a server password in front of it, common on staging sites. Respira's key cannot get past that prompt on its own. Two ways through, both theirs to choose:
+  1. ask whoever set the staging password (often the host) to let addresses starting with `/wp-json/respira/` through without it. This works for every setup, Windows included.
+  2. on a Mac with the file setup, add the staging login to that site in `~/.respira/config.json`, then start a new chat:
+     ```
+     "httpAuth": { "username": "the-staging-user", "password": "the-staging-password" }
+     ```
+     They edit the file themselves. Never ask them to paste the password here.
+- **Anything else**: translate the error. Common causes are the plugin not activated, a maintenance or coming-soon mode, a firewall, or a site key that was replaced on the dashboard (press **Connect Cowork** again for a fresh one). Do not loop more than three times. If it still fails, point them to word@respira.press with a short summary of what was tried.
 
 ### 6. Offer the next step
 
-Once connected, say something warm and offer the next move. Example:
+> "you're connected. want to try editing a page? run `/respira:edit-page`, or tell me what you want to change in plain words, for example 'update the headline on the homepage to say X'."
 
-> "you're connected. want to try editing a page? you can run `/respira:edit-page`, or just tell me what you want to change in plain English (something like 'update the headline on the homepage to say X')."
+## If no Respira tools appear
 
-## If something goes wrong
+The server never started. On Windows this is almost always one of these, in order:
 
-If at any point the MCP server fails to start, check whether `~/.respira/last-startup-error.txt` exists. If it does, read it — it'll have the actual error message and a hint. Surface that to the user in plain language.
+1. **Node.js is not installed.** The Cowork plugin's server needs it (the Claude extension in step 4 does not). In PowerShell, `node -v` and `npx -v` should both print a version; if not, install the LTS version from https://nodejs.org.
+2. **PowerShell blocks npm and npx** with "running scripts is disabled on this system". Fix: `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned`
+3. **The computer needs a full restart** after installing Node. Quitting Claude is not enough on Windows.
 
-If the server is stuck "still connecting", the most common cause is a missing or malformed `~/.respira/config.json`. Ask the user to verify the file is present and that it has the shape:
+On Windows, the quickest way past all three is the Claude extension in step 4, which needs none of them.
 
-```json
-{
-  "sites": [
-    { "url": "https://their-site.com", "apiKey": "respira_..." }
-  ]
-}
-```
-
-`id` and `name` are optional — the server fills them in from the URL on launch (since `@respira/wordpress-mcp-server@6.11.5`).
+If `~/.respira/last-startup-error.txt` exists, read it: it holds the server's own error and a hint.
 
 ## Tone notes
 
-- Lowercase "i" in any first-person voice.
-- No em or en dashes anywhere. Use commas, periods, parentheses, line breaks instead.
-- No jargon. Avoid "endpoint", "auth", "credential", "stack", "instance". Say "address", "key", "login", "site".
-- No urgency. Never say "act now" or "limited time".
-- No emojis.
-- If the user gets stuck, never make them feel stupid. The goal is they walk away thinking "that was easier than i expected."
+- First person is a capital "I".
+- No em or en dashes. Use commas, periods, parentheses, line breaks.
+- No jargon. Avoid "endpoint", "auth", "credential", "instance". Say "address", "key", "login", "site".
+- No urgency, no emojis.
+- If they get stuck, never make them feel slow. The goal is that they walk away thinking it was easier than they expected.

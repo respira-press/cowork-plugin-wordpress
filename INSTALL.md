@@ -79,11 +79,13 @@ Open a new Cowork conversation and run:
 The command walks you through:
 
 1. Installing the Respira plugin on your WordPress site (one time per site).
-2. Downloading your `config.json` from https://respira.press/dashboard and pasting its contents here (one time per machine).
-3. Getting that config into `~/.respira/config.json`, the file Cowork reads on startup. If Cowork has access to that folder it writes it for you; if not (a fresh chat usually doesn't), it gives you one short Terminal line to move it into place: `mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/config.json`. No Terminal? Create a `.respira` folder in your home directory and drop `config.json` in.
-4. Restarting Cowork (open a fresh chat) and testing the connection.
+2. Opening https://www.respira.press/dashboard/mcp, picking **Claude Cowork**, and pressing **Connect Cowork** in step 2. It shows a one-time code, good for 5 minutes. Paste it into the chat and Claude redeems it.
+3. Making it last:
+   - **Mac:** nothing more to do. The code saves your sites to `~/.respira/config.json`, which every new Cowork chat reads. Prefer a file? Under **didn't open, or prefer a file?** download `config.json` and move it into place: `mkdir -p ~/.respira && mv ~/Downloads/config.json ~/.respira/config.json`.
+   - **Windows:** Cowork runs this plugin's server inside its own sandbox, which cannot see files on your C: drive and may not keep the code's setup between chats. Install the Respira extension for Claude Desktop as well: on the same page pick **Claude Desktop**, press **Download .mcpb**, open it, and paste the code from **Show my setup code**. Then quit Claude completely from the icon near the clock and open it again. The extension runs on Claude's own runtime, needs no Node.js and no file, and Cowork uses it in every chat.
+4. Testing the connection.
 
-If you already use Respira through Claude Desktop, the `.mcpb` already put a working `~/.respira/config.json` on your computer. Cowork picks it up automatically. No re-paste, no second config file.
+**Staging site behind a password?** If your browser asks for a username and password before WordPress loads, Respira's key cannot get past that prompt by itself. Ask whoever set the password (often your host) to let addresses starting with `/wp-json/respira/` through, or, on a Mac with the file setup, add `"httpAuth": { "username": "...", "password": "..." }` to that site in `~/.respira/config.json`.
 
 It takes about 5 minutes. The command is written for someone who has never installed a WordPress plugin before. You can run it more than once to add additional sites.
 

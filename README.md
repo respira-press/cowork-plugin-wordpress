@@ -46,13 +46,15 @@ After installing, run `/respira:connect-site` and follow the prompts. You will n
 The connect command walks you through:
 
 1. installing the WordPress plugin on your site.
-2. downloading your `config.json` from the respira.press dashboard.
-3. dropping it into `~/.respira/config.json` on your computer.
+2. pressing **Connect Cowork** on https://www.respira.press/dashboard/mcp (pick **Claude Cowork**) and pasting the one-time code it shows.
+3. on Windows, installing the Respira extension for Claude Desktop as well, so the setup lasts between chats.
 4. a connection test.
 
-Cowork shares the same `~/.respira/config.json` file as the Claude Desktop `.mcpb`, so if you have Claude Desktop already configured you are already set up. Open a new Cowork chat and it picks up the file automatically.
+**Mac:** the code saves your sites to `~/.respira/config.json`, and every new Cowork chat reads it.
 
-Designed for someone who has never used a terminal. No key paste in chat, no `cowork-config.json` to maintain alongside the main config.
+**Windows:** Cowork runs this plugin's server inside its own sandbox, which cannot see files on your C: drive and may not keep the code's setup between chats. The Respira extension for Claude Desktop (pick **Claude Desktop** on the same page, **Download .mcpb**, paste your setup code) runs on Claude's own runtime with no Node.js and no file, and Cowork uses it in every chat.
+
+This plugin's own server needs Node.js on your computer. No key is ever pasted into the chat.
 
 ## How it works
 
