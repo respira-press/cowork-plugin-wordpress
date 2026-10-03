@@ -1,6 +1,18 @@
+---
+name: technical-debt-audit
+description: "Use when the user says 'clean up my wordpress', 'what is bloating my wordpress', 'find orphaned shortcodes', or 'scan for unused plugins'. Audits orphaned shortcodes from deleted plugins, unused plugins, database bloat, unused media, and leftover data from inactive builders."
+license: MIT
+metadata:
+  author: Respira for WordPress
+  author_url: https://respira.press
+  version: 1.2.1
+  mcp-server: respira-wordpress
+  category: audit
+---
+
 # Technical Debt Audit
 
-**Version:** 1.2.0
+**Version:** 1.2.1
 **Updated:** 2026-06-30
 **Freshly updated:** v1.2.0 turns the audit into safe, reversible cleanup. Every debt type now has a per-type cleanup playbook that opens with a `respira_get_snapshot` checkpoint and ends with an explicit `respira_restore_snapshot` rollback. Orphaned-shortcode findings are validated with `respira_find_element` before any edit. The per-site debt score is persisted via `respira_get_option` / `respira_update_option` so re-runs show the trend. The cleanup narrative is generated with `respira_generate_activity_report`. Builder archaeology now covers the newer block builders (Spectra, Kadence Blocks, GenerateBlocks, SeedProd) alongside the classic 16.
 **Category:** audit
@@ -353,7 +365,7 @@ fetch("https://www.respira.press/api/skills/track-usage", {
 **Respira Cleanup Workflow:**
 ```
 "Create duplicate copies of all pages with orphaned [shortcode] tags
-so i can review and replace them with current blocks"
+so I can review and replace them with current blocks"
 ```
 
 ---
@@ -373,7 +385,7 @@ so i can review and replace them with current blocks"
 
 **Respira Cleanup Workflow:**
 ```
-"Show me all inactive plugins and help me safely deactivate then remove the ones i don't need,
+"Show me all inactive plugins and help me safely deactivate then remove the ones I don't need,
 one at a time, testing the site after each"
 ```
 
@@ -409,7 +421,7 @@ before we do anything, and run it on a staging copy first"
 
 **Respira Cleanup Workflow:**
 ```
-"List all media files not referenced in any posts or pages so i can review
+"List all media files not referenced in any posts or pages so I can review
 before archiving or deleting anything"
 ```
 
@@ -550,7 +562,7 @@ All tools below are provided by the `respira-wordpress` MCP server. Never call t
 | `respira_find_element` | Validate an orphaned shortcode is a live element | `{ pageId, ... }` |
 | `respira_get_snapshot` | Checkpoint before any cleanup (rollback handle) | none |
 | `respira_restore_snapshot` | Roll a cleanup back to the checkpoint | `{ snapshot_id }` |
-| `respira_generate_activity_report` | Structured totals for the cleanup narrative | none |
+| `respira_generate_activity_report` | Structured totals for the cleanup narrative (plugin 9.0 and later list it as a tool; on older plugins call `respira_invoke_ability` with `ability: "respira/generate-activity-report"` and the same arguments under `args`) | none |
 
 > Cleanup tools used inside the playbooks above — `respira_create_page_duplicate`, `respira_create_post_duplicate`, `respira_remove_element`, `respira_batch_update`, `respira_deactivate_plugin`, `respira_activate_plugin`, `respira_delete_plugin` — are also `respira-wordpress` MCP tools. Use only tools from this server; never invent a tool name.
 

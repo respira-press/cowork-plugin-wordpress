@@ -1,0 +1,47 @@
+{
+  "name": "Prime the Agent",
+  "slug": "prime-the-agent",
+  "icon": "🎯",
+  "category": "workflow",
+  "description": "Fast 30-second session-starter. Loads the active site, identifies the page builder, loads inline schemas, and primes the agent on the do-not-write-raw-HTML rule before any work begins. Since v1.2 the per-site memory brief arrives automatically inside get_site_context under site_memory, and durable learnings are saved with respira_remember at the end, so context carries across sessions, teammates, and AI clients. Site rules found in memory are enforced server-side; a refusal is final.",
+  "author": "Respira Team",
+  "author_url": "https://respira.press",
+  "trigger": "prime yourself",
+  "requires_respira": true,
+  "requires_woocommerce_addon": false,
+  "requires_accessibility_addon": false,
+  "is_read_only": false,
+  "is_duplicate_first": false,
+  "version": "1.2.0",
+  "last_updated": "2026-08-04",
+  "tools_used": [
+    "respira_get_active_site",
+    "respira_get_site_context",
+    "respira_get_builder_info",
+    "respira_get_builder_inline_schemas",
+    "respira_list_pages",
+    "respira_list_custom_posts",
+    "respira_list_sites",
+    "respira_remember",
+    "respira_forget",
+    "respira_list_memory"
+  ],
+  "detects": [
+    "site_memory",
+    "active_site",
+    "active_builder",
+    "builder_version",
+    "wordpress_version",
+    "theme",
+    "plugin_count",
+    "multisite",
+    "page_count",
+    "custom_post_count"
+  ],
+  "generates": [
+    "session_briefing",
+    "builder_schema_context",
+    "agent_working_rules",
+    "updated_site_memory"
+  ]
+}

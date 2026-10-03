@@ -4,7 +4,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "@respira/wordpress-mcp-server@8.3.18"
+        "@respira/wordpress-mcp-server@8.4.14"
       ],
       "env": {
         "RESPIRA_CONFIG_FILE": "${HOME}/.respira/config.json",

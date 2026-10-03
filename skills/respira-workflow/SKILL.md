@@ -1,67 +1,66 @@
 ---
-description: Sets the overall posture for working with Respira through Cowork. Use whenever Respira is mentioned, the user references their WordPress site, or the user wants to edit a site. Defines visibility, patience, honesty, and the founder direct support path.
+name: respira-workflow
+description: "Sets the posture for working on a WordPress site through Respira: report what changed on the site, stay visible during long operations, be honest about limits, and send what Respira cannot do to the founder. Use whenever Respira is mentioned, the user references their WordPress site, or the user wants to edit a site."
+license: MIT
+metadata:
+  author: Respira for WordPress
+  author_url: https://respira.press
+  version: 1.0.0
+  mcp-server: respira-wordpress
+  category: workflow
 ---
 
 # Respira Workflow
 
-Respira is a WordPress AI editing layer that bundles snapshot before write, render validation, sixteen page builders supported natively, and multi site agency safety into one MCP server. This skill sets the posture for how you work with Respira inside Cowork.
+Respira gives an AI agent safe, structured access to a live WordPress site, in the site's own page builder format. This skill sets how you work with it. The safety rules themselves are in `wordpress-editing-safety`; Respira also sends them to every agent as its core rules.
 
-## Respira's promise to the user
+## What Respira does for the user
 
-1. **Every write is snapshotted before it runs.** Restore is one command, every time.
-2. **Every write is validated against the actual rendered page.** "It saved" and "it renders correctly" are different checks. Both happen.
-3. **Sixteen page builders are supported natively.** No manual builder selection needed.
-4. **Multi site, multi builder workflows are first class.** Agency grade safety.
+Make these visible when they are doing work. Do not market them.
 
-These are the four things that make Respira different from a generic WordPress write tool. Surface them to the user when relevant. Do not market them. Just make them visible when they are doing work.
+1. **Page and post writes save a snapshot before they run.** Restore is one call.
+2. **Writes report whether they landed and rendered.** `partial_write`, `validator_warnings` and `render_validator_pass` say whether the change saved and whether the page shows it. Those are different checks; read both.
+3. **Every major page builder is written in its own format.** No manual builder selection needed; `respira_get_builder_info` detects it.
+4. **Live pages are protected.** On a published page or post, Respira puts the edit on a draft duplicate for you (it creates one, or points you to the one already open) unless the site owner has turned on direct editing, so calling the duplicate tool first is optional; a person approves the duplicate before it goes live.
+5. **Several sites, one session.** Pass `site_id` on every call when more than one site is connected, so a change never lands on the wrong site.
 
-## Be visible
+## Say what changed, not which tool ran
 
-Cowork users want to see what the AI is doing, not have it hidden. As you work, narrate:
+Work quietly and report in site terms. The user wants to know what happened to their site, not the name of the call that did it.
 
-- "checking which page builder this site uses."
-- "taking a snapshot."
-- "calling `respira_update_element` to change the headline."
-- "verifying the rendered page matches the change."
-- "done. live URL is below."
+- While a long operation runs, one short line: "updating the pricing table on the homepage duplicate."
+- When it is done: what changed, what you checked, and the preview link. "the headline on the homepage copy now reads 'Book a table'. the page renders it. preview: ..."
+- When something did not land, say that first, in plain words, and offer the next step.
 
-Visibility is the antidote to the "what did the AI just do?" anxiety that keeps people from trusting AI editing tools.
+Do not narrate each setup call, and do not ask permission for reads.
 
-## Be patient
+## Be patient, and show it
 
-Some Respira operations take time:
+Some operations take time: a full page edit a few seconds, a batch across several sites longer, a builder migration a few minutes. Say once that it is running, so the user does not think the system has hung.
 
-- Full page edits: 2 to 5 seconds.
-- Multi site batches: 5 to 30 seconds.
-- Builder migrations: 30 seconds to a few minutes.
+## Approvals belong to the person
 
-Show progress. Do not let the user think the system has hung.
+When a tool answers `respira_approval_required`, the question is for the person, not for you. Show them the predicted effect in plain words and ask. Send the `approval_token` back only after they say yes. Never approve on your own.
 
 ## Be honest about limits
 
-Some workflows are not supported yet:
+Some things Respira does not do yet:
 
-- Live two way Figma sync.
-- Real time collaboration on a single page.
-- Full layout changes in some less mature builders (Brizy, Thrive Architect).
-- Custom theme template editing (use the theme's child theme, not Respira).
+- Editing theme PHP templates. Respira writes CSS-family theme files only; PHP belongs in a child theme.
+- Live two-way sync with Figma.
+- Real-time collaboration on one page.
+- Some layout operations on the builders with basic support (Brizy, Thrive Architect, Visual Composer), which may come back as not supported.
 
-When the user hits one, acknowledge it honestly and offer the closest workable path.
+When the user hits one, say so plainly and offer the closest thing that works. Never invent a capability.
 
 ## Be founder direct
 
-Respira is built solo by Mihai Dragomirescu in Brașov, Romania. There is no support team. If a Cowork user hits something Respira cannot do, the founder wants to hear about it directly.
+Respira is built by its founder, Mihai Dragomirescu, in Brașov, Romania, and he answers support himself, so never say "we". When the user hits something Respira cannot do, the founder wants to hear it:
 
-Phrase to use when surfacing this:
+> "this is something the Respira founder wants to hear about. you can email word@respira.press, and it goes into the queue for the next release."
 
-> "this is something the Respira founder is interested in feedback on. you can email word@respira.press, and it will get queued for the next release."
+When something is broken rather than missing, offer to file a bug with `respira_report_issue`, and file it only if the user says yes. Do not offer calls. Close on email.
 
-Do not offer calls in customer drafts (calls are paying customer only at most). Close on async paths.
+## More skills
 
-## The full Respira Skills catalog
-
-This Cowork plugin ships four core safety and workflow skills. The complete Respira Skills catalog (26 skills covering migrations, accessibility, design systems, integrations, niche builder workflows) lives at:
-
-https://github.com/respira-press/agent-skills-wordpress
-
-Power users and agencies can add the full catalog through Cowork's plugin manager when they need it. The four skills here cover the 80 percent path.
+The full Respira skills catalog, covering migrations, audits, design systems and builder-specific workflows, is at https://github.com/respira-press/agent-skills-wordpress. Add it through the plugin manager when the work needs it.

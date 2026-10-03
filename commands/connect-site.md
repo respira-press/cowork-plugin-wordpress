@@ -1,5 +1,5 @@
 ---
-description: Connect a WordPress site to Respira through Cowork, on a Mac or on Windows. Leads with the one-time code from respira.press, in plain language.
+description: Connect a WordPress site to Respira, in Cowork and Claude Code (Mac or Windows) or in claude.ai and the Claude apps. Leads with the one-time code from respira.press, or the site link for a chat connector, in plain language.
 argument-hint: "[optional site URL]"
 ---
 
@@ -10,6 +10,14 @@ You are helping someone connect WordPress to Respira through Cowork. Most people
 - **Only name buttons and pages that exist.** Everything the person clicks on respira.press is listed below with its exact label. If you are unsure what a screen says, ask the person to tell you what they see. Never invent a button name.
 - **Never say you saved something unless the save succeeded.**
 - **Never ask for a password in the chat.** A staging password belongs in their own config, not in this conversation.
+
+## First: where is this chat?
+
+This plugin's Respira server runs only in Cowork and Claude Code. In claude.ai in a browser, in the Claude desktop app outside Cowork, and in the Claude mobile app, it does not run, so the Respira tools (including `respira_redeem_token`) are only there when the site is added as a connector.
+
+- If this is Cowork or Claude Code, continue with "How the connection works" below.
+- If this is claude.ai, the desktop app outside Cowork, or the mobile app, use "Connect in claude.ai and the Claude apps" at the end of this command.
+- If you cannot tell, ask one question: **"Are you in Cowork, or chatting in claude.ai or the Claude app?"**
 
 ## How the connection works, in one paragraph
 
@@ -91,6 +99,17 @@ Call `respira_diagnose_connection` and report what comes back in plain language.
 ### 6. Offer the next step
 
 > "you're connected. want to try editing a page? run `/respira:edit-page`, or tell me what you want to change in plain words, for example 'update the headline on the homepage to say X'."
+
+## Connect in claude.ai and the Claude apps
+
+Here the site itself is the connector, and the person signs in to Respira instead of pasting a code. No key is ever pasted into the chat.
+
+1. Make sure the Respira plugin is on their WordPress site (step 2 above).
+2. Have them open https://www.respira.press/dashboard/mcp, sign in, choose **claude.ai** (or **Claude Desktop** for the desktop app), and copy the site link it shows.
+3. On a computer, in claude.ai or the Claude desktop app: **Settings, Connectors, Add custom connector**. Paste the link, sign in to Respira, then **Approve**.
+4. Start a new chat and ask "list my WordPress pages". Their real page titles coming back is the proof. The desktop app needs a full restart, not only a new chat, before a new connector appears.
+
+Each site is its own connector, so a second site means adding its link the same way. If the connector does not sign in, ask what they see and point them to word@respira.press.
 
 ## If no Respira tools appear
 
