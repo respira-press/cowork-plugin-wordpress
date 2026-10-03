@@ -1,3 +1,15 @@
+---
+name: internal-link-builder
+description: "Use when the user says 'build internal links', 'improve internal linking', 'fix orphaned pages', or 'create topic clusters'. Analyzes all published content, maps topic relationships, and presents a linking plan for approval before changing anything."
+license: MIT
+metadata:
+  author: Respira for WordPress
+  author_url: https://respira.press
+  version: 1.2.0
+  mcp-server: respira-wordpress
+  category: performance
+---
+
 # Internal Link Builder
 
 **Version:** 1.2.0

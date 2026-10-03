@@ -1,3 +1,15 @@
+---
+name: mobile-experience-report
+description: "Use when the user says 'my site looks bad on mobile', 'check mobile layout', 'responsive audit', or 'site broken on phones'. Diagnoses breakpoint problems, text sizing, column stacking failures, hidden elements, and navigation menu behavior, device by device."
+license: MIT
+metadata:
+  author: Respira for WordPress
+  author_url: https://respira.press
+  version: 1.2.0
+  mcp-server: respira-wordpress
+  category: audit
+---
+
 # Mobile Experience Report
 
 **Version:** 1.2.0

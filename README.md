@@ -1,138 +1,81 @@
 <p align="center">
-  <img src="./respira-cowork-v1.png" alt="Respira for WordPress, in Cowork" width="720" />
+  <img src="./assets/logo.png" alt="Respira for WordPress" width="160" />
 </p>
 
-# Respira for Cowork
+# Respira for WordPress
 
-Edit live WordPress sites from inside Cowork. Tell Claude what you want changed and Respira routes the edit to the right page builder, snapshots before writing, and validates that the page actually rendered correctly. Sixteen page builders supported (Gutenberg, Elementor, Divi 4, Divi 5, Bricks, Oxygen Classic, Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks, GenerateBlocks), plus SeedProd audit-only. One-click rollback always available, no FTP or database access needed.
+Respira lets Claude edit a WordPress site the way a careful person would: in the site's own page builder, one element at a time, with a snapshot taken before every write. Ask for a new headline, a testimonials section, an SEO pass or a move from Elementor to Bricks, and Claude does it through Respira's tools instead of pasting raw HTML into your pages.
 
-Built for the agency owners, designers, and freelancers who manage WordPress sites for clients and want to delegate the editing work to Claude without giving up control.
+This plugin gives Claude the Respira skills, slash commands and a visual reviewer agent, and in Claude Code and Cowork it starts the Respira MCP server for you. It works with Gutenberg, Elementor, Divi 4 and Divi 5, Bricks, Oxygen Classic and Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks and GenerateBlocks, and it can audit SeedProd pages.
 
-Current version: **v1.1.2**. Live at [respira.press/cowork](https://respira.press/cowork).
+## What you can ask for
 
-## What you can do
+- **Edit a page.** "Change the homepage headline to 'spring collection arriving'." Claude finds the element, edits it in the builder's own format, and checks that the page still renders.
+- **Add a section.** "Add a three-column testimonials section under the hero." Built from native modules of the page's builder.
+- **Move between builders.** Migration skills cover the common paths, such as Elementor, Divi, WPBakery, Beaver Builder or Oxygen to Bricks, Breakdance or Gutenberg, section by section.
+- **Audit a site.** SEO and AI search visibility, accessibility, mobile experience, technical debt, WooCommerce health and security, with fixes you can apply one by one.
+- **Work across many sites.** Connect every client site once and refer to them by name in the same conversation.
+- **Get a client's sign-off.** Make a review link a client opens without a WordPress login, then apply their comments on a draft.
 
-**Edit a page without opening WP admin.** "Update the headline on my client's homepage to say 'spring collection arriving' instead of 'new arrivals'." Cowork takes that sentence and Respira finds the right element, snapshots the page, makes the edit, and verifies the new headline is actually rendering on the live site. Total time: about thirty seconds.
+## How it keeps your site safe
 
-**Migrate a client site between page builders.** A client wants to leave Elementor for Bricks (or Divi for Gutenberg, or WPBakery for Bricks, or any of sixteen supported migration paths). Tell Claude which site, which target builder, and Respira works through the pages section by section, builds native modules in the new builder, and validates each one. Migration work that used to take a week happens in an afternoon.
+- Every page and post write saves a snapshot first. Any change is one restore away, and `/respira:undo-last-change` rolls back the last one.
+- On a published page, the edit lands on a draft duplicate, and a person approves it before it goes live, unless the site owner has turned on direct editing.
+- Writes go through the builder's own data format. Respira never writes SQL or raw database rows and never edits theme PHP.
+- After each write Respira validates the rendered page and reports what it found. Claude is told never to claim a success the response does not show.
 
-**Audit a site before a client meeting.** "Run a full health check on acme.com and tell me what to fix first." Respira returns a prioritized list covering SEO, AI search visibility (how the site shows up in ChatGPT, Claude, Perplexity, Gemini), accessibility, mobile experience, technical debt, and WooCommerce health. Most of the obvious problems have one-click fixes attached.
+## Requirements
 
-**Clean up a media library in one pass.** "Optimize all the images on this site." Respira rewrites missing alt text in the site's voice, compresses oversized images, and standardizes dimensions for performance. Each change is snapshotted, so anything can be rolled back if it doesn't look right.
+- A WordPress site where you can install plugins, with the **Respira for WordPress** plugin installed and activated.
+- A Respira account at [respira.press](https://www.respira.press).
+- For Claude Code and Cowork: Node.js on your computer, because the bundled MCP server runs through `npx`.
 
-**Manage ten client sites from one conversation.** You are working in Cowork with ten WordPress sites connected. Mention "the testimonials page on the bakery site" and Respira knows which install you mean. Every edit across every site is snapshotted; `/respira:undo-last-change` rolls back the most recent change on whichever site you just touched. The multi-site context follows the conversation naturally.
+## Connect a site
 
-## What's included
+**Claude Code and Cowork.** Install this plugin, then run `/respira:connect-site`. It walks you through installing the WordPress plugin, pressing the connect button on [respira.press/dashboard/mcp](https://www.respira.press/dashboard/mcp) and pasting the one-time code it shows. The code saves your sites and their site keys to `~/.respira/config.json` on your computer. No key is ever pasted into the chat. [INSTALL.md](./INSTALL.md) has the steps for Windows and for teams.
 
-Eight slash commands for the most common workflows. Thirty auto-activating skills that fire when relevant, including sixteen builder-to-builder migration paths. A visual reviewer sub-agent that opens the page in your browser after every edit and shows you what changed. Full access to all 200+ Respira MCP tools through the bundled MCP server (`@respira/wordpress-mcp-server`). All sixteen supported page builders: Gutenberg, Elementor, Divi 4, Divi 5, Bricks, Oxygen Classic, Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks, and GenerateBlocks (plus SeedProd, audit-only).
+**claude.ai in the browser and the Claude apps.** Chat does not run local servers, so connect the site itself: in Claude, open **Settings, Connectors, Add custom connector**, paste the site link from your Respira dashboard, sign in to Respira, then **Approve**. The skills and commands in this plugin then work with that connection.
 
-## Install
-
-**Claude Desktop (Cowork).** In Claude, open **Cowork > Customize > Plugins**, click the **Personal** tab, then **+ > Add marketplace > Add from a repository** and enter `respira-press/cowork-plugin-wordpress`. Click **Sync**, then **Install**. When the "This plugin includes local MCP servers" notice appears, click **Continue**.
-
-**Claude Code (terminal or VS Code).** Run `/plugin marketplace add respira-press/cowork-plugin-wordpress`, then `/plugin install respira`.
-
-Then run `/respira:connect-site`.
-
-Note: the Anthropic / Partners marketplace tabs will not list Respira until the directory listing clears Anthropic review. The Personal route above is the live path today. (`/plugin` is not available on claude.ai/code web.)
-
-## Setup
-
-After installing, run `/respira:connect-site` and follow the prompts. You will need:
-
-- A WordPress site you can install plugins on.
-- A Respira account. Sign up at https://respira.press for a 7 day Maker trial. No credit card required.
-
-The connect command walks you through:
-
-1. installing the WordPress plugin on your site.
-2. pressing **Connect Cowork** on https://www.respira.press/dashboard/mcp (pick **Claude Cowork**) and pasting the one-time code it shows.
-3. on Windows, installing the Respira extension for Claude Desktop as well, so the setup lasts between chats.
-4. a connection test.
-
-**Mac:** the code saves your sites to `~/.respira/config.json`, and every new Cowork chat reads it.
-
-**Windows:** Cowork runs this plugin's server inside its own sandbox, which cannot see files on your C: drive and may not keep the code's setup between chats. The Respira extension for Claude Desktop (pick **Claude Desktop** on the same page, **Download .mcpb**, paste your setup code) runs on Claude's own runtime with no Node.js and no file, and Cowork uses it in every chat.
-
-This plugin's own server needs Node.js on your computer. No key is ever pasted into the chat.
-
-## How it works
-
-Respira sits between Claude and your WordPress sites. When you ask Claude to do something WordPress related in Cowork (edit a page, audit a site, add a testimonials section), Respira routes the request through the right page builder, validates the change against the live rendered output, and reports back.
-
-Every edit is snapshotted before it runs. Restore is one command, always.
-
-## The forty-one skills, in plain language
-
-All skills auto activate when the conversation matches their description. You do not have to invoke them.
-
-**Operational guardrails (5)**
-
-- **WordPress editing safety**: enforces snapshot before write, render validation after write, and honest reporting if anything is partial.
-- **Page builder detection**: figures out which of the 12 supported builders the page uses, before any edit.
-- **Multi site context**: keeps track of which site you are working on across many connected client sites.
-- **Respira workflow**: sets the visible, patient, honest posture Respira aims for.
-- **Respira setup assistant**: walks first time users through plugin install, API key, and connection test.
-
-**Site intelligence and audits (7)**
-
-- **Site onboarding**: connects a new WordPress site and produces a one page briefing.
-- **WordPress site DNA**: profiles the theme, builders, plugins, performance posture, and audience signals.
-- **Mobile experience report**: catches mobile only layout, performance, and tap target problems.
-- **Technical debt audit**: inventories deprecated plugins, dead options, and unsafe patterns the site has accumulated.
-- **WooCommerce health check**: scans cart, checkout, taxes, and product pages for the patterns that hurt conversion.
-- **SEO and AEO amplifier**: targets both classic search and answer engine visibility (citations in ChatGPT, Claude, Perplexity, Gemini).
-- **Internal link builder**: proposes high signal internal links based on the site's actual content map.
-
-**Content and assets (2)**
-
-- **WordPress AI image optimizer**: rewrites alt text, compresses, and standardizes image dimensions across the media library.
-- **Content portability**: exports and imports posts and pages between sites with their builder data preserved.
-
-**Builder to builder migrations (16)**
-
-- migrate-elementor-to-bricks
-- migrate-elementor-to-breakdance
-- migrate-elementor-to-oxygen
-- migrate-elementor-to-gutenberg
-- migrate-divi-to-bricks
-- migrate-divi-to-breakdance
-- migrate-divi-to-gutenberg
-- migrate-beaver-builder-to-bricks
-- migrate-beaver-builder-to-gutenberg
-- migrate-wpbakery-to-bricks
-- migrate-wpbakery-to-gutenberg
-- migrate-visual-composer-to-gutenberg
-- migrate-thrive-architect-to-gutenberg
-- migrate-brizy-to-gutenberg
-- migrate-oxygen-to-bricks
-- migrate-oxygen-to-breakdance
-
-Each migration skill knows the source builder's data shape and the target builder's native modules, applies the conversion section by section, and validates each step before continuing.
-
-## The eight commands, in plain language
+## The commands
 
 | Command | What it does |
 |---|---|
 | `/respira:connect-site` | Connect a WordPress site for the first time. |
 | `/respira:edit-page` | Edit any page on a connected site. |
-| `/respira:add-section` | Add a new section to a page (hero, testimonials, FAQ, etc.). |
-| `/respira:duplicate-page` | Make a safe copy of a page to experiment with. |
-| `/respira:preview-changes` | See what is on a page in your browser. |
-| `/respira:audit-site` | Check accessibility, SEO, or performance. |
+| `/respira:add-section` | Add a new section to a page, such as a hero, testimonials or an FAQ. |
+| `/respira:duplicate-page` | Make a safe copy of a page to work on. |
+| `/respira:preview-changes` | Open a page in your browser to see what is on it. |
+| `/respira:audit-site` | Check accessibility, SEO or performance. |
 | `/respira:undo-last-change` | Roll back the most recent edit. |
-| `/respira:help` | Show the menu and support paths. |
+| `/respira:help` | Show the menu and where to get help. |
 
-You can also just talk to Claude in plain English about what you want done. The slash commands are shortcuts.
+You can also ask in plain words. The commands are shortcuts.
+
+## The skills
+
+The skills load on their own when a conversation needs them. They cover safe editing and builder detection, page builds from HTML or Figma for each builder, builder-to-builder migrations, site audits (SEO and AI search, accessibility, mobile, technical debt, security, stale content, conversion), WooCommerce catalog, pricing and campaigns, design systems and art direction, brand voice, internal linking, activity reports, and client review loops. The same skills are published on their own at [respira-press/agent-skills-wordpress](https://github.com/respira-press/agent-skills-wordpress).
+
+## Data and privacy
+
+Everything this plugin runs, sends or fetches:
+
+- **The MCP server (Claude Code and Cowork).** `.mcp.json` starts `@respira/wordpress-mcp-server`, pinned to one exact version, through `npx`, which downloads it from the npm registry the first time. The server reads your sites and site keys from `~/.respira/config.json`, and asks `registry.npmjs.org` whether a newer version exists so it can tell you.
+- **Your WordPress sites.** The server sends each tool call to the WordPress site you are working on, over HTTPS, authenticated with that site's key. Page content travels between your site and Claude.
+- **respira.press, for your account.** Redeeming a setup code calls `https://www.respira.press/api/cowork/redeem`, and the server refreshes your site list through `https://www.respira.press/api/mcp/config/refresh`. Two tools call respira.press when you use them: `respira_search_docs` sends your search words to `https://www.respira.press/docs-search`, and `respira_report_issue` sends the report you approve to `https://www.respira.press/mcp/report-issue`. A few tools run inside the WordPress plugin and reach respira.press from your site, such as the rendered design check, which asks the respira.press render service to load a published page and take screenshots.
+- **respira.press, usage records.** After each tool call the server sends a record to `https://www.respira.press/mcp-spend/track`: the tool name, the site address, how long it took, whether it worked and its error code, the WordPress, Respira and WooCommerce versions, the page builder and theme type, and a one-way hash of the call's target. When a skill is opened it sends the skill name, the site address and the client name to `https://www.respira.press/api/skills/track-usage`. These records feed the usage and cost views in your Respira dashboard. They never contain tool arguments or results, page content, prompts or the conversation. Set the environment variable `RESPIRA_USAGE_OPT_OUT=1` to switch both off.
+- **Skill run summaries.** Several skills end by asking Claude to send a short run summary to `POST https://www.respira.press/api/skills/track-usage`: the skill name, the site address, the WordPress and PHP versions, timings, whether it succeeded, which Respira tools it used, the AI client's name, and counts such as issues found by severity. Four skills include a small `telemetry.ts` helper that sends the same summary. Each skill that sends one names the endpoint and its fields in its own text. No page content and no keys are included. Claude only sends it when it can make HTTP calls, and you can tell Claude not to.
+- **Nothing else.** The plugin has no hooks, runs nothing at startup besides the MCP server, and does not change Claude's permission settings.
+
+The full policy is at [respira.press/privacy](https://www.respira.press/privacy) and the terms at [respira.press/terms](https://www.respira.press/terms).
 
 ## Support
 
+- Help and questions: [respira.press/community](https://www.respira.press/community)
 - Email: word@respira.press
-- Documentation: https://docs.respira.press
-- Live telemetry: https://respira.press/live
+- Documentation: [respira.press/docs](https://www.respira.press/docs)
 
-i am Mihai, the solo founder of Respira. built from Brașov, Romania. used in production on 747 connected WordPress sites at the time of this release.
+Respira is built by Mihai Dragomirescu in Brașov, Romania.
 
 ## License
 
-MIT.
+MIT. See [LICENSE](./LICENSE).

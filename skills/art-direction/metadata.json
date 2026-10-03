@@ -12,8 +12,8 @@
   "requires_accessibility_addon": false,
   "is_read_only": false,
   "is_duplicate_first": false,
-  "version": "1.1.0",
-  "last_updated": "2026-08-14",
+  "version": "1.2.0",
+  "last_updated": "2026-09-13",
   "changelog": {
     "1.1.0": "Import v2. Adds an explicit Figma Import Lane: the Figma MCP sequence (get_variable_defs/get_design_context, name-first role guessing that matches the plugin's own IMPORT_COLOR_ROLE_MAP, DTCG dry-run, then save) for agents with Figma MCP access, distinct from the dashboard's browser-side token paste at respira.press/dashboard/art-direction. Adds a worked example to the Claude Design Import Lane and documents its dashboard drop-zone counterpart (auto-detected paste, additive guidance diff).",
     "1.0.0": "First release. The sequence: get the direction, create one before building when none exists, two-pass token planning against the donts and the three AI-default aesthetics (ai-purple gradient minimalism, warm-craft sameness, corporate-slop filler), build with preserve_tokens, check_design with rendered:true on published pages, fix every unwaived fail, mint a live preview. Includes the Claude Design import lane (DTCG dry-run first, prose into guidance, inferred:true on guesses) and waiver etiquette (owner's standing decision, never to make a check pass)."
@@ -30,7 +30,11 @@
     "respira_check_design",
     "respira_mint_design_preview",
     "respira_build_page",
-    "respira_convert_html_to_builder"
+    "respira_convert_html_to_builder",
+    "respira_create_review_link",
+    "respira_list_review_comments",
+    "respira_resolve_review_comment",
+    "respira_create_share_link"
   ],
   "detects": [
     "active_direction_presence",

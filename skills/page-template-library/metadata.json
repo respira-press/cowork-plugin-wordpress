@@ -1,0 +1,51 @@
+{
+  "name": "Page Template Library Bootstrapper",
+  "slug": "page-template-library",
+  "icon": "📐",
+  "category": "workflow",
+  "description": "Capture canonical page patterns (case study, service page, landing page hero + 3-up + CTA) as re-usable playbooks. Uses the new v7.1 MCP tools respira_create_playbook + respira_list_playbooks + respira_update_playbook. Future page-generation skills spawn new pages from playbooks in seconds, on-brand, with the right structure.",
+  "author": "Respira Team",
+  "author_url": "https://respira.press",
+  "trigger": "save this as a template",
+  "requires_respira": true,
+  "requires_woocommerce_addon": false,
+  "requires_accessibility_addon": false,
+  "is_read_only": false,
+  "is_duplicate_first": false,
+  "version": "1.0.3",
+  "last_updated": "2026-08-13",
+  "changelog": {
+    "1.0.3": "On a published sample, the check prefers rendered:true so structure and contrast get checked against the live render too.",
+    "1.0.2": "The sample spawn runs respira_check_design before the playbook counts as done.",
+    "1.0.1": "Playbooks bind to the Design Direction: respira_get_design_direction replaces the raw respira_design_system option read, which remains only as a fallback for plugins older than 8.6.15."
+  },
+  "tools_used": [
+    "respira_get_active_site",
+    "respira_get_builder_info",
+    "respira_get_design_direction",
+    "respira_list_pages",
+    "respira_list_custom_posts",
+    "respira_extract_builder_content",
+    "respira_get_option",
+    "respira_create_playbook",
+    "respira_list_playbooks",
+    "respira_update_playbook",
+    "respira_get_playbook",
+    "respira_build_page",
+    "respira_check_design"
+  ],
+  "detects": [
+    "page_section_pattern",
+    "common_structure_across_pages",
+    "variable_content_slots",
+    "design_system_bindings",
+    "builder_specific_modules"
+  ],
+  "generates": [
+    "playbook_definition",
+    "playbook_slot_schema",
+    "section_spine",
+    "design_system_bound_references",
+    "sample_spawned_page"
+  ]
+}

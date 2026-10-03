@@ -1,5 +1,9 @@
 ---
+name: multi-site-context
 description: Manages context across multiple connected WordPress sites. Use whenever the user has more than one site connected, mentions a client site, talks about all sites or across sites, or references a site by name. Picks the right site without asking every time.
+license: MIT
+metadata:
+  version: 1.1.0
 ---
 
 # Multi Site Context

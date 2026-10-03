@@ -12,8 +12,8 @@
   "requires_accessibility_addon": false,
   "is_read_only": false,
   "is_duplicate_first": true,
-  "version": "1.0.0",
-  "last_updated": "2026-08-19",
+  "version": "1.1.0",
+  "last_updated": "2026-09-13",
   "tools_used": [
     "respira_get_active_site",
     "respira_get_builder_info",
@@ -28,7 +28,11 @@
     "respira_list_design_tokens",
     "respira_find_element",
     "respira_update_element",
-    "respira_check_design"
+    "respira_check_design",
+    "respira_create_review_link",
+    "respira_list_review_comments",
+    "respira_resolve_review_comment",
+    "respira_create_share_link"
   ],
   "detects": [
     "active_breakdance_version",

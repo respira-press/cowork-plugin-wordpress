@@ -1,10 +1,10 @@
 {
   "name": "respira",
   "owner": {
-    "name": "respira.press",
+    "name": "Respira",
     "email": "word@respira.press"
   },
-  "description": "AI editing for WordPress sites across 16 page builders, in Cowork.",
+  "description": "Edit WordPress sites with Claude in the site's own page builder: Elementor, Divi, Bricks, Gutenberg and more. Every edit is snapshotted first, published pages change on a draft you approve, and any change is one restore away.",
   "plugins": [
     {
       "name": "respira",
@@ -12,12 +12,12 @@
         "source": "github",
         "repo": "respira-press/cowork-plugin-wordpress"
       },
-      "description": "AI editing for WordPress sites across 16 page builders. Edit live sites safely with snapshot before edit, render validation, and one click rollback.",
-      "version": "1.3.1",
+      "description": "Edit WordPress sites with Claude in the site's own page builder: Elementor, Divi, Bricks, Gutenberg and more. Every edit is snapshotted first, published pages change on a draft you approve, and any change is one restore away.",
+      "version": "1.4.0",
       "author": {
-        "name": "respira.press"
+        "name": "Respira"
       },
-      "homepage": "https://respira.press",
+      "homepage": "https://www.respira.press/integrations/claude",
       "repository": "https://github.com/respira-press/cowork-plugin-wordpress",
       "license": "MIT",
       "keywords": [
@@ -26,13 +26,13 @@
         "elementor",
         "divi",
         "bricks",
+        "gutenberg",
         "oxygen",
         "breakdance",
         "beaver-builder",
-        "ai-editing",
-        "agency",
-        "design",
-        "marketing"
+        "woocommerce",
+        "seo",
+        "agency"
       ]
     }
   ]

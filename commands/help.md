@@ -2,7 +2,7 @@
 description: Show the available Respira commands and how to use them.
 ---
 
-You are showing the user a friendly menu of what Respira can do for them in Cowork. Keep it short, plain language, and warm. End with a real path to support.
+You are showing the user a friendly menu of what Respira can do for them in Claude. Keep it short, plain language, and warm. End with a real path to support.
 
 ## Output
 
@@ -21,9 +21,9 @@ respira commands
 /respira:help                 show this menu
 ```
 
-Then, in 2 to 3 short sentences, explain that the slash commands are shortcuts. The real way to use Respira is to just talk to Claude in plain English about what you want done. Example:
+Then, in 2 to 3 short sentences, explain that the slash commands are shortcuts. The real way to use Respira is to talk to Claude in plain English about what you want done. Example:
 
-> "you can also just say something like 'update the homepage hero on my Acme site to say X' and Respira will figure out the right tool, take a snapshot first, run the change, and show you the result."
+> "you can also say something like 'update the homepage hero on my Acme site to say X' and Respira will figure out the right tool, take a snapshot first, run the change, and show you the result."
 
 ## Support paths
 
@@ -33,16 +33,17 @@ End with the founder direct support paths. Do not invent extra paths. Email is t
 support
 
   email                   word@respira.press
-  documentation           docs.respira.press
+  community               respira.press/community
+  documentation           respira.press/docs
   live telemetry          respira.press/live
 
-i am Mihai, the solo founder of Respira. if you hit something Respira cannot do,
-i want to hear about it. email me directly and it will get queued for the next release.
+I am Mihai, and I build Respira. If you hit something Respira cannot do,
+I want to hear about it. Write to word@respira.press and it goes on the list for the next release.
 ```
 
 ## Tone notes
 
-- Lowercase "i" in any first person voice.
+- First person is a capital "I".
 - No em or en dashes.
 - No emojis.
 - No urgency. No "act now". No "limited time".

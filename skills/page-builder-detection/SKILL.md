@@ -1,10 +1,14 @@
 ---
+name: page-builder-detection
 description: Recognises which WordPress page builder is in use and picks the right approach for that builder. Use whenever the user mentions Elementor, Divi, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome, Brizy, Thrive, Gutenberg, or page builder. Calls respira_get_builder_info before any edit so the right write path is chosen.
+license: MIT
+metadata:
+  version: 1.1.0
 ---
 
 # Page Builder Detection
 
-Respira supports 12 WordPress page builders. Each one stores content differently and needs a different write path. Picking the wrong path produces broken pages.
+Respira works with the major WordPress page builders. Each one stores content differently and needs a different write path. Picking the wrong path produces broken pages.
 
 ## Supported builders and how they store content
 
@@ -58,4 +62,4 @@ Never silently fail. Never write garbage into a builder format you cannot valida
 
 ## When the builder is not supported
 
-If the builder is not in the list above, tell the user honestly and surface what is possible. Offer to forward feedback to the founder so the builder gets prioritized for the next release. The Respira backlog is shaped by what users actually hit.
+If `respira_get_builder_info` reports a builder Respira does not support, tell the user honestly and surface what is possible. Offer to forward feedback to the founder so the builder gets prioritized for the next release. The Respira backlog is shaped by what users actually hit.
