@@ -1,7 +1,7 @@
 {
   "name": "respira",
   "displayName": "Respira for WordPress",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Edit WordPress sites with Claude in the site's own page builder: Elementor, Divi, Bricks, Gutenberg and more. Every edit is snapshotted first, published pages change on a draft you approve, and any change is one restore away.",
   "author": {
     "name": "Respira",

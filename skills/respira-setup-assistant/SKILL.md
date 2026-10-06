@@ -183,12 +183,12 @@ To connect your AI assistant to WordPress, install the Respira for WordPress plu
 
 ### MCP server setup:
 Run this in your terminal:
-npx -y @respira/wordpress-mcp-server --setup
+npx -y @respira/wordpress-mcp-server@8.4.16 --setup
 
 Follow the prompts. You'll need your WordPress site URL and the API key from the dashboard installer.
 
 Optional after setup: install the bundled skill collection:
-npx @respira/wordpress-mcp-server install-skills
+npx @respira/wordpress-mcp-server@8.4.16 install-skills
 
 Once done, come back and say: "check my respira connection"
 ```
@@ -210,7 +210,7 @@ The Respira plugin is installed but no API key is configured. The MCP server nee
 3. Give it a name (e.g., "Claude Desktop")
 4. Copy the generated key
 5. Add it to your MCP server config by running:
-   npx -y @respira/wordpress-mcp-server --setup
+   npx -y @respira/wordpress-mcp-server@8.4.16 --setup
    and paste the key when prompted
 
 Once done, say: "check my respira connection"
@@ -247,7 +247,7 @@ Update the Respira plugin:
 **If MCP server needs updating:**
 ```
 Update the MCP server:
-npx -y @respira/wordpress-mcp-server@latest --update
+npx -y @respira/wordpress-mcp-server@8.4.16 --update
 
 Or in Claude Desktop settings, update the command to use the latest version.
 ```
@@ -326,7 +326,7 @@ In your MCP server configuration, add these fields:
 These are separate from your WordPress login and your Respira API key.
 
 Re-run the setup:
-npx -y @respira/wordpress-mcp-server --setup
+npx -y @respira/wordpress-mcp-server@8.4.16 --setup
 
 And select the option to configure Basic Auth credentials.
 ```
