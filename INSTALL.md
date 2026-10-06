@@ -128,7 +128,7 @@ This whole sequence came from a customer who hit all four in a row and wrote it 
 If it still fails, try running the server manually in a terminal:
 
 ```
-npx -y @respira/wordpress-mcp-server
+npx -y @respira/wordpress-mcp-server@8.4.16
 ```
 
 If that fails too, screenshot the error and email word@respira.press.
@@ -154,7 +154,7 @@ If your page builder is not in the supported list (Gutenberg, Elementor, Divi 4,
 The bundled MCP server is `@respira/wordpress-mcp-server`. Cowork installs it via `npx -y` on first use. If a tool the slash commands reference is not available, you may be running an older version. Force a refresh:
 
 1. Close Cowork.
-2. In Terminal: `npx -y @respira/wordpress-mcp-server@latest --version`.
+2. In Terminal: `npx -y @respira/wordpress-mcp-server@8.4.16 --version`.
 3. Reopen Cowork.
 
 ### Anything else

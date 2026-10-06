@@ -22,7 +22,7 @@ WordPress Site DNA runs a comprehensive audit of your WordPress installation usi
 ## Installation
 
 1. Install Respira for WordPress from [respira.press](https://www.respira.press)
-2. Connect via MCP: `npx -y @respira/wordpress-mcp-server --setup`
+2. Connect via MCP: `npx -y @respira/wordpress-mcp-server@8.4.16 --setup`
 3. Open Claude and say: `"analyze my wordpress site"`
 
 ## Trigger phrases
