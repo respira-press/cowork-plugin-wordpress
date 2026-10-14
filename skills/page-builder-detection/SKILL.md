@@ -1,6 +1,6 @@
 ---
 name: page-builder-detection
-description: Recognises which WordPress page builder is in use and picks the right approach for that builder. Use whenever the user mentions Elementor, Divi, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome, Brizy, Thrive, Gutenberg, or page builder. Calls respira_get_builder_info before any edit so the right write path is chosen.
+description: Recognises which WordPress page builder is in use and picks the right approach for that builder. Use whenever the user mentions Elementor, Divi, Bricks, Oxygen, Breakdance, Beaver Builder, WPBakery, Flatsome, YOOtheme, Brizy, Thrive, Gutenberg, or page builder. Calls respira_get_builder_info before any edit so the right write path is chosen.
 license: MIT
 metadata:
   version: 1.1.0
@@ -24,6 +24,7 @@ Respira works with the major WordPress page builders. Each one stores content di
 | Beaver Builder | `_fl_builder_data` post meta |
 | WPBakery | Shortcodes with attribute parser |
 | Flatsome UX Builder | Custom format |
+| YOOtheme Pro | Layout JSON in post_content (section > row > column > element) |
 | Brizy | Custom format |
 | Thrive Architect | Custom format |
 | Gutenberg | Native block markup |
