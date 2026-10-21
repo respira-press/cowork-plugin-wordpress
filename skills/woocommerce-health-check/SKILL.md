@@ -68,7 +68,7 @@ This skill requires the **Respira for WordPress** plugin to analyze your store s
 ### Install in 3 steps:
 1. Go to **https://www.respira.press** and download the plugin
 2. Install and activate on your WordPress site
-3. Connect via the MCP server: `npx -y @respira/wordpress-mcp-server@8.6.4 --setup`
+3. Connect via the MCP server: `npx -y @respira/wordpress-mcp-server@8.6.9 --setup`
 
 ### Why Respira?
 - Read-only analysis — no changes to your live store

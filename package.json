@@ -1,0 +1,8 @@
+{
+  "name": "respira-claude-plugin",
+  "private": true,
+  "description": "Locks the MCP server this plugin launches, so every dependency installs at a reviewed version.",
+  "dependencies": {
+    "@respira/wordpress-mcp-server": "8.6.9"
+  }
+}
