@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.0.0
+  version: 1.0.1
   mcp-server: respira-wordpress
   category: audit
 ---
@@ -191,6 +191,8 @@ If yes, route to the appropriate edit flow (usually `respira_create_page_duplica
 ---
 
 ## Telemetry
+
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
 
 Records: site URL hash, n_pages audited, score distribution, top issue categories detected, success/failure, total duration. No page content, no recommendations, no scores per page sent.
 

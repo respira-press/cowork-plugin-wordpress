@@ -5,15 +5,15 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.0.0
+  version: 1.0.1
   mcp-server: respira-wordpress
   category: migration
 ---
 
 # HTML to a builder page
 
-**Version:** 1.0.0
-**Updated:** 2026-10-04
+**Version:** 1.0.1
+**Updated:** 2026-10-31
 **Category:** migration
 **Status:** stable
 **Requires:** Respira for WordPress plugin (9.1+) and an MCP connection, on a site running a supported builder
@@ -62,9 +62,11 @@ Call `respira_get_site_context` and `respira_get_builder_info`. Note the active 
 
 Send the whole document: `<head>` with its `<style>` blocks and font links, and the `<body>`. Do not strip the head.
 
+When the file does not exist yet, or needs tidying before it converts, hand the person's AI one of the two prompts published at `https://www.respira.press/exhale#prompt`: one prepares an existing page, the other writes a new one. Both ask for one self-contained file (the stylesheet in the head, the design in `:root` tokens, real sections, no scripts), which is the shape this skill expects. Any complete HTML document converts without them; they are for a better first result.
+
 - **Linked stylesheets** over https (Bootstrap, a design system) are fetched and carried with the page. Google Fonts links are kept as font links.
 - **Images** need absolute URLs the site can reach. A relative path (`images/hero.jpg`) or a local file renders broken: upload it first with `respira_upload_media` or `respira_sideload_image` and put the media URL in the file.
-- **Tailwind through the CDN script** (`cdn.tailwindcss.com`) does not convert: the script never runs on the site, so the classes carry no design. Compile the CSS (Tailwind CLI or the Play CDN export) into a `<style>` block first. The converter warns when it sees the script.
+- **Tailwind through the CDN script** (`cdn.tailwindcss.com`, or `@tailwindcss/browser` for Tailwind 4) never runs on the site, so the site has the page's CSS compiled on respira.press first, from the page's own `tailwind.config` or `@theme`, and the report carries a `tailwind_compiled` warning. Send such a page as it is. When the report says `styling_in_script` instead, the compile did not happen (an older plugin, no active licence, no network; the message gives the reason) and the page converted unstyled: compile the CSS with the Tailwind CLI into a `<style>` block and convert again.
 - **Scripts** are not carried. Anything the page does only in JavaScript (a slider, a counter, a menu toggle) is lost; CSS animations, transitions and hover states are kept. Tell the user which behaviours were script-driven.
 - **Forms** keep their markup but post nowhere on WordPress. Say so, and offer to rebuild them with the site's form plugin.
 - The scoped stylesheet can carry about 150 KB on fidelity builders (100 KB on others). Over that the call refuses with `respira_css_too_large` and creates nothing: trim unused rules and extra font weights, then convert again.

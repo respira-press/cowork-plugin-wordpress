@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.4.2
+  version: 1.4.3
   mcp-server: respira-wordpress
   category: intelligence
 ---
@@ -428,6 +428,8 @@ No-store builders (Brizy, Thrive Architect, WPBakery, Visual Composer, Flatsome,
 ---
 
 ## Telemetry
+
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
 
 Records: site URL hash, number of pages sampled, builder active, theme name, colors detected count, typography sources used (theme.json / CSS variables / per-page observation), success/failure, total duration. No actual color values, font names, or logo URLs are sent.
 

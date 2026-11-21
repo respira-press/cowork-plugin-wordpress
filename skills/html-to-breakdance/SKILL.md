@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.0
+  version: 1.2.1
   mcp-server: respira-wordpress
   category: migration
 ---
@@ -279,6 +279,8 @@ When the converted page is on a duplicate or a draft, share the draft with whoev
 ---
 
 ## Telemetry
+
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
 
 Records: site URL hash, Breakdance version, themeless mode yes/no, HTML input size (bytes),
 elements converted count, CodeBlock fallback count, variables bound, success/failure, total

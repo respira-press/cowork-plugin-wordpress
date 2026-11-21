@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.1.0
+  version: 1.1.1
   mcp-server: respira-wordpress
   category: reporting
 ---
@@ -102,7 +102,7 @@ Write the report using the framing's voice:
 
 **Testimonial draft** — first-person, in the operator's voice, framed as a quote. "In the last 30 days I saved 5 hours of agency time on [client] thanks to Respira's snapshot-first edits. We shipped 14 pages with zero rollbacks."
 
-**Build in public** — punchy, social-shaped. "This week on Respira: 42 edits across 14 client pages, 5 hours saved, 0 rollbacks. The agent took a swing, snapshotted before every change, and not once did I have to undo it. Here's what landed →"
+**Build in public** — punchy, social-shaped. "This week on Respira: 42 edits across 14 client pages, 5 hours saved, 0 rollbacks. The agent took a swing, every page edit had a snapshot first, and not once did I have to undo it. Here's what landed →"
 
 **Personal recap** — terse log entry for the operator's own notes. Date, totals, what got done, what was hard, what's next. No marketing voice.
 
@@ -129,7 +129,7 @@ Offer to save the report as a custom post type entry on the site (so it shows up
 
 ## Summary
 
-In the last {window}, {totals.edits} edits landed across {totals.pages} pages on {client_name}'s site. {totals.snapshots} snapshots were captured before any change, and {totals.rollbacks} were rolled back during review.
+In the last {window}, {totals.edits} edits landed across {totals.pages} pages on {client_name}'s site. {totals.snapshots} snapshots were captured before page and post edits, and {totals.rollbacks} were rolled back during review.
 
 ## What we did
 
@@ -173,6 +173,8 @@ If the user selects case-study framing with anonymize ON:
 ---
 
 ## Telemetry
+
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
 
 Records: site URL hash, framing chosen, window length, totals from the response, output format selected, success/failure. No report text, no client name, no notes are sent.
 

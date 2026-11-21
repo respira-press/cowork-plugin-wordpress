@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.1
+  version: 1.2.2
   mcp-server: respira-wordpress
   category: workflow
 ---
@@ -231,6 +231,8 @@ Notes: For Gutenberg-only sites, "builder-native" means writing block markup (th
 ---
 
 ## Telemetry
+
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
 
 This skill records a usage event when it runs. The event captures: active site URL hash, active builder, content-surface counts (pages, custom posts, plugins), success/failure, and total duration. No site content, no user prompts, no tool arguments are sent.
 

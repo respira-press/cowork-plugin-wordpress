@@ -1,5 +1,5 @@
 ---
-description: Edit a page on a connected WordPress site. Picks the safe tool, snapshots before writing, and shows the result in the browser.
+description: Edit a page on a connected WordPress site. Picks the safe tool, saves a snapshot before a page or post write, and shows the result in the browser.
 argument-hint: "[optional: site name or URL, page title, what to change]"
 ---
 
@@ -72,7 +72,7 @@ Run the write through the chosen tool. Mention out loud:
 - "taking a snapshot."
 - "applying the change."
 
-Respira creates the snapshot automatically inside the MCP layer. You do not need to call `respira_get_snapshot` separately. Just narrate so the user sees what is happening.
+Respira creates the snapshot automatically inside the MCP layer for a page, post or layout write. You do not need to call `respira_get_snapshot` separately. Just narrate so the user sees what is happening. If the change is not a page, post or layout edit (a menu or term, a user, a plugin or a core update), do not say a snapshot was taken: say it has none unless the response shows one, and that the host's backup is the way back.
 
 ### 9. Read the response carefully
 

@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.0
+  version: 1.2.1
   mcp-server: respira-wordpress
   category: migration
 ---
@@ -197,7 +197,9 @@ Once the draft checks out, share the draft with whoever signs off. `respira_crea
 
 ## Telemetry
 
-After run completion, send fire-and-forget usage tracking to:
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, send the usage note to:
 
 - `POST https://www.respira.press/api/skills/track-usage`
 

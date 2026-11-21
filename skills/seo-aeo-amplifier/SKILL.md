@@ -5,16 +5,16 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.3.1
+  version: 1.3.3
   mcp-server: respira-wordpress
   category: performance
 ---
 
 # SEO & AEO Amplifier
 
-**Version:** 1.3.1
-**Updated:** 2026-06-30
-**Freshly updated:** v1.3.0 takes a snapshot with respira_get_snapshot before any edit so every change is one-click reversible, switches from full extract/inject to surgical respira_find_element + respira_update_element edits for meta titles, descriptions and H1s, applies schema and meta across many pages in a single safe pass with respira_batch_update, and wires respira_generate_activity_report into the "SEO work done -> client report" handoff. Also leans on the real SEO analysis tools (respira_analyze_seo, respira_analyze_aeo, respira_analyze_rankmath, respira_check_seo_issues, respira_check_structured_data) instead of hand-rolled scoring.
+**Version:** 1.3.3
+**Updated:** 2026-10-31
+**Freshly updated:** v1.3.0 takes a snapshot with respira_get_snapshot before any page or post edit so those changes can be restored, switches from full extract/inject to surgical respira_find_element + respira_update_element edits for meta titles, descriptions and H1s, applies schema and meta across many pages in a single safe pass with respira_batch_update, and wires respira_generate_activity_report into the "SEO work done -> client report" handoff. Also leans on the real SEO analysis tools (respira_analyze_seo, respira_analyze_aeo, respira_analyze_rankmath, respira_check_seo_issues, respira_check_structured_data) instead of hand-rolled scoring.
 
 Comprehensive on-page SEO and Answer Engine Optimization (AEO) audit and auto-fix system for WordPress sites. Scans all content, detects issues, generates intelligent schema markup, and creates optimized duplicates for review.
 
@@ -149,6 +149,16 @@ If user declines, stop after delivering recommendations.
 - Add JSON-LD schema only where Yoast does not already cover the content type
 - Suggest focus keywords and readability improvements
 
+#### Yoast's llms.txt file
+
+If Yoast's llms.txt feature is on, fetch the site's `/llms.txt` and read what it lists before promising the owner anything about it. What Yoast builds (checked against Yoast SEO 28.8, so confirm the version first):
+
+- **Pages** follow Yoast's llms.txt setting. In manual mode the file lists the About, Contact, Terms, Privacy and Shop pages plus the extra pages the owner picked.
+- **Posts and every other post type ignore that setting.** They always use the automatic list, five links per type: cornerstone content first (only when Yoast's cornerstone feature is on), then the most recently modified. For posts, the recent slots only take posts published in the last 12 months. To get an article into the file, mark it cornerstone; the code has no separate hand-picked list for posts.
+- **Terms.** Every indexable public taxonomy gets a section with its five largest terms by post count. A taxonomy added by a theme or builder appears too unless it is set to noindex in Yoast's search appearance settings. Divi's layout taxonomies are an example: Divi registers them without marking them non-public, so they show up until they are set to noindex.
+
+The five-link limit and the term count are fixed in Yoast's code; there is no setting for them.
+
 ### Rank Math detected
 
 - Read Rank Math metadata
@@ -195,7 +205,7 @@ If auto-fix is run, also include:
 ## Safety Model
 
 - Read-only audit first
-- Snapshot via `respira_get_snapshot` before any write, restore with `respira_restore_snapshot`
+- Snapshot via `respira_get_snapshot` before any page or post write, restore with `respira_restore_snapshot`
 - Explicit user confirmation before changes
 - Duplicate-first changes only
 - Never auto-publish
@@ -264,7 +274,9 @@ It can:
 
 ## Telemetry
 
-After run completion, send fire-and-forget usage tracking to:
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, send the usage note to:
 
 - `POST https://www.respira.press/api/skills/track-usage`
 

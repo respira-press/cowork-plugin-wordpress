@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.0
+  version: 1.2.1
   mcp-server: respira-wordpress
   category: intelligence
 ---
@@ -134,6 +134,15 @@ When the agent has Figma MCP access (the `figma` server, not the dashboard's bro
 3. **Import as a dry run.** Call `respira_import_design_tokens` with the DTCG payload and `dry_run: true` (the default). Show the response's `readiness` delta and any `skipped` entries to the user. Re-call with `dry_run: false` only after they see it, to save the draft. `claude-design`-style provenance does not apply here; the plugin records `figma-dtcg` in `sources` automatically.
 4. **Typography and spacing follow the same import**, not a separate call: `typography.families.{heading,body,mono}` and `typography.scale.*`, `spacing.scale.*`, same DTCG payload.
 
+## OpenDesign Import Lane
+
+OpenDesign (open-design.ai) keeps each design system as a folder, `design-systems/<name>/`, holding `tokens.css` and `DESIGN.md`; its pages are single-file HTML. When the user brings one (or the agent can read the folder through OpenDesign's MCP server):
+
+1. **tokens.css carries the values.** Map its variables to DTCG by role, not by guess: `--bg` → `color.bg`, `--fg` → `color.ink`, `--accent` → `color.accent`, `--border` → `color.border`, and inside an explicit role group `--surface` → `color.roles.surface`, `--muted` (muted text) → `color.roles.muted`, `--accent-on` → `color.roles.accent-ink`. Every other color (`--surface-warm`, `--fg-2`, `--meta`, `--border-soft`) is a `color.<slug>` brand entry. `--font-display` → `typography.families.heading`, `--font-body` → `body`, `--font-mono` → `mono`; `--text-*` → `typography.scale.*`, `--space-*` → `spacing.*`, `--radius-*` → `radius.*`. Read only the light theme: values inside `.dark`, `[data-theme="dark"]` or `prefers-color-scheme: dark` are not the direction. Then import as a dry run like any other lane.
+2. **DESIGN.md carries the prose.** Its "Do's and Don'ts" subsections go to `guidance.dos` / `guidance.donts` (additive, as in the Claude Design lane); the first sentence of "Visual Theme & Atmosphere" can be the statement when the direction has none. Measurements in Layout or Typography "principles" are not guidance.
+3. **Pages go through Respira Exhale**, the HTML to native page converter: an OpenDesign page converts to a native page in the site's builder, and the direction keeps later edits on palette.
+4. The user can do all of this without an agent: the dashboard's Art Direction page has an OpenDesign tab that takes `tokens.css`, `DESIGN.md` and exported pages, and the tokens tab also reads shadcn/ui variables and Tailwind v4 `@theme` blocks.
+
 ## Claude Design Import Lane
 
 When the user brings output from Claude Design, `/design-sync`, or any design-system document (a Markdown spec, JSON tokens, exported variables), map it to the direction schema agent-side:
@@ -235,6 +244,8 @@ The same page also runs the Figma and Claude Design import lanes without an agen
 ---
 
 ## Telemetry
+
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
 
 Records: site URL hash, whether a direction was active at start, path taken (existing / synthesized / imported), import format when imported, check rounds until clean, unwaived fails fixed, rendered mode used, success/failure, total duration. No token values, no direction contents, no screenshots are sent.
 

@@ -94,6 +94,7 @@ Call `respira_diagnose_connection` and report what comes back in plain language.
      "httpAuth": { "username": "the-staging-user", "password": "the-staging-password" }
      ```
      They edit the file themselves. Never ask them to paste the password here.
+     The same login covers the rendered design check's screenshots (`respira_check_design` with `rendered: true`, plugin 9.3.10 or newer): for that check it passes briefly through the Respira MCP server, the plugin on their site and Respira's renderer, which uses it to open the page, and none of them stores it.
 - **Anything else**: translate the error. Common causes are the plugin not activated, a maintenance or coming-soon mode, a firewall, or a site key that was replaced on the dashboard (press **Connect Cowork** again for a fresh one). Do not loop more than three times. If it still fails, point them to word@respira.press with a short summary of what was tried.
 
 ### 6. Offer the next step

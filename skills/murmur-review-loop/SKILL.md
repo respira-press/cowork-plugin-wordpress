@@ -1,11 +1,11 @@
 ---
 name: murmur-review-loop
-description: "Use when the user says 'send this to my client', 'get feedback on this page', 'send a review link', 'what did the client say', or 'work through the review notes'. Sends a Murmur review link, reads the notes reviewers pin to the page, replies, applies each change on a duplicate, and resolves every note with the snapshot of the change."
+description: "Use when the user says 'send this to my client', 'get feedback on this page', 'send a review link', 'what did the client say', or 'work through the review notes'. Sends a Murmur review link, reads the notes reviewers pin to the page, replies, applies each change on a duplicate, and resolves every note with the snapshot of the change. Also runs a Murmur split test when the person wants to compare two versions of a page with real visitors ('test this against the live page', 'which version gets more calls')."
 license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.0.0
+  version: 1.0.1
   mcp-server: respira-wordpress
   category: workflow
   respira_min_version: 8.9.0
@@ -54,6 +54,8 @@ This skill runs that loop from the agent's side. It sends the link, reads the no
 - "what did the client say"
 - "work through the review notes"
 - "resolve the murmurs"
+- "test this version against the live page"
+- "which version gets more enquiries"
 
 ## Execution Workflow
 
@@ -105,6 +107,16 @@ Leave a note open while the owner has not decided. Say which notes are still ope
 
 The notes, replies and resolutions also appear in the respira.press dashboard and in Respira AER, where the owner can pick the loop up without an agent.
 
+## Split test
+
+Use this when the person wants real visitors to choose between two versions of a page ("try a bigger phone button and see if more people call"), not a reviewer's opinion. Half the visitors see the published page (A), half see a draft copy (B) at the same address. A win is a visit to the thank-you page after a form, a tap on a phone number link, or both, counted once per visitor. Editors and bots always see A and are never counted. Same plan gate as Murmur: Builder and up. On a lower plan the start is refused with a message about the plan: say so plainly.
+
+1. **Make B.** Call `respira_create_page_duplicate` on the published page and make the change on the duplicate with the usual element edits. Show the person the duplicate's preview before starting.
+2. **Agree the win and the length.** Ask which page a visitor reaches after sending the form (an address on the same site, never the home page) and whether phone taps count (they do unless turned off). The test is planned for 14 days unless the person picks 1 to 90.
+3. **Start.** Call `respira_start_split_test` with `post_id` (A), `variant_post_id` (B), `thank_you_url` and/or `track_calls`, `days` and a `label`. Pass on the response `message` as it is: it says what counts, the planned end, and what was done about the site's caches. When the message names NitroPack, tell the person they must add the page to NitroPack's excluded URLs themselves. One running test per page: if one is already running, the refusal names it (`test_id`); read it rather than starting another.
+4. **Wait.** Nothing ends by itself. When asked how it is going, call `respira_get_split_test` (or `respira_list_split_tests` for every test on the site) and show `results.summary` word for word, with `status`. "Too early to say" means keep it running; `due` means the planned end has passed and the test is still counting, waiting for a decision. Never round the summary up into a winner it does not name.
+5. **End only after a yes.** Ask the person what they decided, then call `respira_end_split_test` with `decision: "keep_a"` (A stays live, B stays a draft and is not deleted) or `decision: "make_b_live"` (B goes live through the same approval as any draft, with a snapshot first). If the answer is `respira_approval_required`, show the person what will change and ask before sending the approval back. Never end a test, or make B live, because the numbers look good.
+
 ## Safety Model
 
 - Every change lands on a duplicate; the live page is not touched and nothing is published
@@ -112,6 +124,7 @@ The notes, replies and resolutions also appear in the respira.press dashboard an
 - Each resolution carries the snapshot id of its write, so every change has a named way back
 - Site-wide links only on staging or with the owner's explicit yes
 - Links expire (14 days by default) and are revoked when the review ends
+- A split test never ends or publishes on its own: the agent reports the result and waits for the person's decision
 
 ## Honest Disclaimer
 
@@ -123,11 +136,13 @@ It can: send a link anyone can open, bring every note back with the exact spot i
 
 ## Tooling
 
-`respira_create_review_link`, `respira_list_review_links`, `respira_list_review_comments`, `respira_get_review_comment`, `respira_reply_to_review_comment`, `respira_resolve_review_comment`, `respira_revoke_review_link`, `respira_create_share_link`, `respira_create_page_duplicate`, `respira_find_element`, `respira_update_element`, `respira_get_snapshot`
+`respira_create_review_link`, `respira_list_review_links`, `respira_start_split_test`, `respira_get_split_test`, `respira_list_split_tests`, `respira_end_split_test`, `respira_list_review_comments`, `respira_get_review_comment`, `respira_reply_to_review_comment`, `respira_resolve_review_comment`, `respira_revoke_review_link`, `respira_create_share_link`, `respira_create_page_duplicate`, `respira_find_element`, `respira_update_element`, `respira_get_snapshot`
 
 ## Telemetry
 
-After run completion, fire-and-forget to `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = murmur-review-loop`, site and version context, duration, notes read, notes resolved and notes left open. No note text, reviewer names or email addresses are sent. Never block the user on telemetry.
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = murmur-review-loop`, site and version context, duration, notes read, notes resolved and notes left open. No note text, reviewer names or email addresses are sent. Never block the user on telemetry.
 
 ## Related Skills
 

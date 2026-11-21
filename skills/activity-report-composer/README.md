@@ -2,7 +2,7 @@
 
 > Turn the audit log of work done on a WordPress site into a polished written report — in six different framings.
 
-Respira tracks every edit, snapshot, and rollback on every connected site. This skill turns that log into a written report you can send to a client, publish as a case study, drop into your build-in-public feed, or file for your own records.
+Respira records every action on every connected site, and every snapshot and restore of page, post and layout edits. This skill turns that log into a written report you can send to a client, publish as a case study, drop into your build-in-public feed, or file for your own records.
 
 ## What it does
 

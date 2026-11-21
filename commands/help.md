@@ -17,13 +17,13 @@ respira commands
 /respira:duplicate-page       make a safe copy of a page to experiment with
 /respira:preview-changes      see what is on a page in your browser
 /respira:audit-site           check accessibility, SEO, or performance
-/respira:undo-last-change     roll back the most recent edit
+/respira:undo-last-change     restore the most recent page or post edit
 /respira:help                 show this menu
 ```
 
 Then, in 2 to 3 short sentences, explain that the slash commands are shortcuts. The real way to use Respira is to talk to Claude in plain English about what you want done. Example:
 
-> "you can also say something like 'update the homepage hero on my Acme site to say X' and Respira will figure out the right tool, take a snapshot first, run the change, and show you the result."
+> "you can also say something like 'update the homepage hero on my Acme site to say X' and Respira will figure out the right tool, save a snapshot first when it edits a page or post, run the change, and show you the result."
 
 ## Support paths
 

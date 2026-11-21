@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: "Respira for WordPress"
   author_url: https://respira.press
-  version: 1.0.1
+  version: 1.0.2
   mcp-server: respira-wordpress
   category: commerce
 ---
@@ -115,7 +115,9 @@ It can: pick candidates from real sales and stock rather than plausibility, stop
 
 ## Telemetry
 
-After run completion, fire-and-forget to `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = woo-marketing-campaigns`, site and version context, duration, products promoted, drafts created. Never block the user on telemetry.
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = woo-marketing-campaigns`, site and version context, duration, products promoted, drafts created. Never block the user on telemetry.
 
 ## Related Skills
 

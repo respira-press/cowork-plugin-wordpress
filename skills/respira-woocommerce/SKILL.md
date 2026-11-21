@@ -78,7 +78,7 @@ The storefront surface (under `/respira/v1/woocommerce/storefront/`) covers `ana
 1. `analyze-shop` or `analyze-product`. Returns the active builder and the editable card / template paths.
 2. `update-card-layout` to mutate the product card structure.
 3. `add-low-stock-badge` to insert the conditional badge widget.
-4. Always snapshot the page first with `respira_create_page_duplicate`.
+4. Always make a draft copy of the page first with `respira_create_page_duplicate`.
 
 ### Batch product updates
 

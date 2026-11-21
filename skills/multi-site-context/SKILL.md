@@ -39,7 +39,7 @@ If the user comes back tomorrow saying "did i update the testimonials section?",
 - Which site.
 - When.
 - What changed.
-- The snapshot ID that can roll it back if needed.
+- The snapshot ID, when the change had one (page, post and layout edits do).
 
 If your memory across sessions is limited, lean on `respira_list_snapshots` to reconstruct what happened.
 

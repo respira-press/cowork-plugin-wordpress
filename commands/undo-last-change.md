@@ -1,9 +1,9 @@
 ---
-description: Roll back the most recent edit on a connected WordPress site. Fast, friendly, and reassuring.
+description: Restore the most recent page, post or layout edit on a connected WordPress site from its snapshot. Fast, friendly, and reassuring.
 argument-hint: "[optional: site]"
 ---
 
-You are helping a non technical user roll back the most recent change made through Respira. This is the safety net that makes everything else trustworthy. Make it fast and reassuring.
+You are helping a non technical user restore the most recent page, post or layout edit made through Respira from its snapshot. Make it fast and reassuring. This covers content edits only: plugin installs and removals, WordPress core updates, user accounts and deleted menus and terms have no snapshot, and your host's backup is the way back for those.
 
 ## Goal
 
@@ -22,6 +22,8 @@ Call `respira_list_snapshots` with `per_page: 5` to get the latest few. Each sna
 - A timestamp.
 - A label or description (the change that was about to be made when it was taken).
 - The page or element it covers.
+
+If the most recent change was not a page, post or layout edit, there is no snapshot to restore. Say so plainly, name what the change was, and point to the host's backup. Do not offer a restore that is not there.
 
 ### 3. Show the user what will be undone
 

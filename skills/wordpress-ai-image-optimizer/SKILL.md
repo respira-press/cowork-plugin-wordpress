@@ -5,15 +5,15 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.1
+  version: 1.2.2
   mcp-server: respira-wordpress
   category: performance
 ---
 
 # WordPress AI Image Optimizer
 
-**Version:** 1.2.1
-**Updated:** 2026-06-30
+**Version:** 1.2.2
+**Updated:** 2026-10-31
 **Freshly updated:** v1.2.0 replaces per-image `respira_update_media` loops with a single `respira_update_media_batch` pass (up to ~50 items at once), snapshots the media library with `respira_get_snapshot` before the batch so the whole run is one-step reversible, runs the audit through `respira_analyze_images`, surfaces optional stock replacements via `respira_search_stock_images` + `respira_sideload_image`, and closes with a `respira_generate_activity_report` summary (e.g. "optimized 47 images, saved 1.2GB").
 
 AI-powered image optimization for WordPress sites. Automatically compresses, converts formats, renames files, and updates all references. Processes images locally in AI code editor, creates optimized versions, and preserves originals for safety.
@@ -102,6 +102,7 @@ AI-powered image optimization for WordPress sites. Automatically compresses, con
 3. Detects optimization plugins/CDN:
    - Smush, ShortPixel, EWWW, Imagify, Optimole
    - Cloudflare, BunnyCDN, other CDNs
+   - If ShortPixel serves WebP or AVIF from local files (checked against ShortPixel Image Optimiser 6.6.1), it rewrites `<img>` tags into `<picture>` with `<source>` elements when the page is rendered, not in the stored content. In its global mode it does this on the whole page in an output buffer started early in the request; in its other mode it does it on post content, excerpts, post thumbnails and `wp_get_attachment_image` output. So read the rendered HTML to see what visitors get, and expect `<picture>` there even though the media library and the builder data show a plain image. Any other code that edits image tags, such as `srcset`, `sizes`, lazy loading or preload hints, has to cope with a `<picture>` wrapper.
 4. Scores opportunities by impact:
    - File size x page traffic = optimization priority
    - Separates quick wins from big wins
@@ -125,7 +126,7 @@ User can choose:
 
 **Phase 3: AI Processing**
 
-6. Snapshot the media library before any writes with `respira_get_snapshot` so the entire batch is reversible in one step (`respira_restore_snapshot`). Take this once, before the batch — not per image.
+6. Keep the original files before any writes: Respira's snapshots cover page, post and layout edits and deleted media, not the optimized files you upload. Tell the person plainly that the originals are the way back.
 7. Downloads images from WordPress to local workspace.
 8. Processes images locally:
    - Compression

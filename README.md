@@ -4,7 +4,7 @@
 
 # Respira for WordPress
 
-Respira lets Claude edit a WordPress site the way a careful person would: in the site's own page builder, one element at a time, with a snapshot taken before every write. Ask for a new headline, a testimonials section, an SEO pass or a move from Elementor to Bricks, and Claude does it through Respira's tools instead of pasting raw HTML into your pages.
+Respira lets Claude edit a WordPress site the way a careful person would: in the site's own page builder, one element at a time, with a snapshot taken before every page and post write. Ask for a new headline, a testimonials section, an SEO pass or a move from Elementor to Bricks, and Claude does it through Respira's tools instead of pasting raw HTML into your pages.
 
 This plugin gives Claude the Respira skills, slash commands and a visual reviewer agent, and in Claude Code and Cowork it starts the Respira MCP server for you. It works with Gutenberg, Elementor, Divi 4 and Divi 5, Bricks, Oxygen Classic and Oxygen 6, Beaver Builder, Breakdance, Flatsome, Brizy, Visual Composer, WPBakery, Spectra, Kadence Blocks and GenerateBlocks, and it can audit SeedProd pages.
 
@@ -19,10 +19,10 @@ This plugin gives Claude the Respira skills, slash commands and a visual reviewe
 
 ## How it keeps your site safe
 
-- Every page and post write saves a snapshot first. Any change is one restore away, and `/respira:undo-last-change` rolls back the last one.
+- Every page, post and layout write saves a snapshot first, and you can restore it. `/respira:undo-last-change` restores the most recent snapshot. A deleted page, post or media item goes to the trash with a snapshot. Plugin installs and removals, WordPress core updates, user accounts and deleted menus and terms are not snapshotted, so your host's backup is the way back for those, and the destructive ones wait for your approval. The activity log records every action.
 - On a published page, the edit lands on a draft duplicate, and a person approves it before it goes live, unless the site owner has turned on direct editing.
-- Writes go through the builder's own data format. Respira never writes SQL or raw database rows and never edits theme PHP.
-- After each write Respira validates the rendered page and reports what it found. Claude is told never to claim a success the response does not show.
+- Page content is written in the builder's own data format. Respira's rules tell Claude not to use raw SQL, direct database writes or theme PHP to change a page.
+- After a page write Respira validates the rendered page and reports what it found. Claude is told never to claim a success the response does not show.
 
 ## Requirements
 
@@ -46,7 +46,7 @@ This plugin gives Claude the Respira skills, slash commands and a visual reviewe
 | `/respira:duplicate-page` | Make a safe copy of a page to work on. |
 | `/respira:preview-changes` | Open a page in your browser to see what is on it. |
 | `/respira:audit-site` | Check accessibility, SEO or performance. |
-| `/respira:undo-last-change` | Roll back the most recent edit. |
+| `/respira:undo-last-change` | Restore the most recent page or post edit. |
 | `/respira:help` | Show the menu and where to get help. |
 
 You can also ask in plain words. The commands are shortcuts.
@@ -57,13 +57,15 @@ The skills load on their own when a conversation needs them. They cover safe edi
 
 ## Data and privacy
 
+**What is sent to respira.press, in short.** After each tool call the MCP server sends a usage record to `https://www.respira.press/mcp-spend/track`: the tool name, the site address, how long the call took, whether it worked, versions, the builder and a one-way hash of the target. When a skill opens it sends the skill name, the site address and the client name to `https://www.respira.press/api/skills/track-usage`. Nothing in these records is tool arguments, tool results, page content, prompts or the conversation. To switch both off, set the environment variable `RESPIRA_USAGE_OPT_OUT=1` where Claude starts the server. Skill run summaries are separate: each skill asks you once and sends one only after a yes.
+
 Everything this plugin runs, sends or fetches:
 
 - **The MCP server (Claude Code and Cowork).** `.mcp.json` starts `@respira/wordpress-mcp-server`, pinned to one exact version, through `npx`, which downloads it from the npm registry the first time. The server reads your sites and site keys from `~/.respira/config.json`, and asks `registry.npmjs.org` whether a newer version exists so it can tell you.
 - **Your WordPress sites.** The server sends each tool call to the WordPress site you are working on, over HTTPS, authenticated with that site's key. Page content travels between your site and Claude.
 - **respira.press, for your account.** Redeeming a setup code calls `https://www.respira.press/api/cowork/redeem`, and the server refreshes your site list through `https://www.respira.press/api/mcp/config/refresh`. Two tools call respira.press when you use them: `respira_search_docs` sends your search words to `https://www.respira.press/docs-search`, and `respira_report_issue` sends the report you approve to `https://www.respira.press/mcp/report-issue`. A few tools run inside the WordPress plugin and reach respira.press from your site, such as the rendered design check, which asks the respira.press render service to load a published page and take screenshots.
 - **respira.press, usage records.** After each tool call the server sends a record to `https://www.respira.press/mcp-spend/track`: the tool name, the site address, how long it took, whether it worked and its error code, the WordPress, Respira and WooCommerce versions, the page builder and theme type, and a one-way hash of the call's target. When a skill is opened it sends the skill name, the site address and the client name to `https://www.respira.press/api/skills/track-usage`. These records feed the usage and cost views in your Respira dashboard. They never contain tool arguments or results, page content, prompts or the conversation. Set the environment variable `RESPIRA_USAGE_OPT_OUT=1` to switch both off.
-- **Skill run summaries.** Several skills end by asking Claude to send a short run summary to `POST https://www.respira.press/api/skills/track-usage`: the skill name, the site address, the WordPress and PHP versions, timings, whether it succeeded, which Respira tools it used, the AI client's name, and counts such as issues found by severity. Four skills include a small `telemetry.ts` helper that sends the same summary. Each skill that sends one names the endpoint and its fields in its own text. No page content and no keys are included. Claude only sends it when it can make HTTP calls, and you can tell Claude not to.
+- **Skill run summaries.** Several skills end by asking Claude to send a short run summary to `POST https://www.respira.press/api/skills/track-usage`: the skill name, the site address, the WordPress and PHP versions, timings, whether it succeeded, which Respira tools it used, the AI client's name, and counts such as issues found by severity. Four skills include a small `telemetry.ts` helper that sends the same summary. Each skill that sends one names the endpoint and its fields in its own text. No page content and no keys are included. Each skill asks you first and sends the summary only after a yes.
 - **Nothing else.** The plugin has no hooks, runs nothing at startup besides the MCP server, and does not change Claude's permission settings.
 
 The full policy is at [respira.press/privacy](https://www.respira.press/privacy) and the terms at [respira.press/terms](https://www.respira.press/terms).

@@ -4,8 +4,8 @@ description: Use when asked to audit, score, or health-check a WordPress site or
 license: MIT
 metadata:
   short-description: Full site health check across SEO, AEO, accessibility, readability, and performance
-  version: 1.2.0
-  updated_at: 2026-09-13
+  version: 1.2.1
+  updated_at: 2026-10-31
   respira_min_version: 8.9.0
 ---
 
@@ -72,6 +72,13 @@ If RankMath, Yoast, AIOSEO, or SEOPress is active (visible in `respira_get_site_
 - `respira_analyze_rankmath` reads RankMath's own focus keyword scores and suggestions.
 - Use these scores alongside `respira_analyze_seo` for a richer picture. Don't run them as alternatives.
 - `respira_check_seo_issues` returns the active SEO plugin's own issue feed.
+
+### Before you recommend delaying a script
+
+Performance findings stay recommendations (see Rules). When the recommendation is to load a third-party script after the page has loaded, say these two things, so the owner does not swap a speed score for a broken page.
+
+- **Old ad and widget scripts that call `document.write`.** Run after the page has finished loading, a `document.write` call replaces everything already on the page with its own output. A test in Chrome 156 showed it: a script added after the load event that wrote one line left only that line on the page. Delaying such a script as it is blanks the page. It needs to be removed or replaced, or wrapped so that it appends what it writes instead. Open the page in a browser with the delay in place before calling the fix done.
+- **Cookie banners and consent.** A banner script that starts itself on the browser's load event never starts when it is added after that event. Cookiebox, for example, builds its banner from a load listener, so a copy loaded late needs one explicit call to its build function. Consent also has to reach Google Analytics: Cookiebox sends the Google consent update only for the cookie groups that have a Google consent mapping filled in on its dashboard, so an unmapped banner leaves analytics denied even for visitors who accepted. Test as a visitor who accepts the banner, not on the default view.
 
 ## Rules
 

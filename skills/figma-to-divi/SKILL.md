@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.1.0
+  version: 1.1.1
   mcp-server: respira-wordpress
   category: migration
 ---
@@ -107,4 +107,6 @@ It cannot guarantee pixel-perfect parity, reproduce component variants or protot
 
 ## Telemetry
 
-After run completion, fire-and-forget `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = figma-to-divi`, site/version context, duration and success.
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = figma-to-divi`, site/version context, duration and success.

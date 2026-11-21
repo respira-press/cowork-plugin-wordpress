@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.0
+  version: 1.2.1
   mcp-server: respira-wordpress
   category: onboarding
 ---
@@ -183,12 +183,12 @@ To connect your AI assistant to WordPress, install the Respira for WordPress plu
 
 ### MCP server setup:
 Run this in your terminal:
-npx -y @respira/wordpress-mcp-server@8.6.9 --setup
+npx -y @respira/wordpress-mcp-server@8.7.7 --setup
 
 Follow the prompts. You'll need your WordPress site URL and the API key from the dashboard installer.
 
 Optional after setup: install the bundled skill collection:
-npx @respira/wordpress-mcp-server@8.6.9 install-skills
+npx @respira/wordpress-mcp-server@8.7.7 install-skills
 
 Once done, come back and say: "check my respira connection"
 ```
@@ -210,7 +210,7 @@ The Respira plugin is installed but no API key is configured. The MCP server nee
 3. Give it a name (e.g., "Claude Desktop")
 4. Copy the generated key
 5. Add it to your MCP server config by running:
-   npx -y @respira/wordpress-mcp-server@8.6.9 --setup
+   npx -y @respira/wordpress-mcp-server@8.7.7 --setup
    and paste the key when prompted
 
 Once done, say: "check my respira connection"
@@ -247,7 +247,7 @@ Update the Respira plugin:
 **If MCP server needs updating:**
 ```
 Update the MCP server:
-npx -y @respira/wordpress-mcp-server@8.6.9 --update
+npx -y @respira/wordpress-mcp-server@8.7.7 --update
 
 Or in Claude Desktop settings, update the command to use the latest version.
 ```
@@ -326,7 +326,7 @@ In your MCP server configuration, add these fields:
 These are separate from your WordPress login and your Respira API key.
 
 Re-run the setup:
-npx -y @respira/wordpress-mcp-server@8.6.9 --setup
+npx -y @respira/wordpress-mcp-server@8.7.7 --setup
 
 And select the option to configure Basic Auth credentials.
 ```
@@ -374,7 +374,9 @@ Once connected, share these examples to help the user get started immediately:
 
 ## Telemetry
 
-After run completion, send fire-and-forget usage tracking to:
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, send the usage note to:
 
 - `POST https://www.respira.press/api/skills/track-usage`
 

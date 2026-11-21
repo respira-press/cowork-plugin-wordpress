@@ -5,14 +5,14 @@ license: MIT
 metadata:
   author: "Respira for WordPress"
   author_url: https://respira.press
-  version: 1.0.2
+  version: 1.0.3
   mcp-server: respira-wordpress
   category: commerce
 ---
 
 # Woo Pricing and Promotions
 
-Runs a sale, a repricing, or a coupon on a live WooCommerce store, and treats the money as money. Every change is previewed before it happens, snapshotted when it does, and reversible afterwards.
+Runs a sale, a repricing, or a coupon on a live WooCommerce store, and treats the money as money. Every change is previewed before it happens. Product prices are snapshotted before they change and can be reverted; a new coupon is not a snapshotted edit, so the person is told that.
 
 ## What this skill does
 
@@ -105,7 +105,9 @@ It can: show what a change costs before it happens, apply it consistently across
 
 ## Telemetry
 
-After run completion, fire-and-forget to `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = woo-pricing-promotions`, site and version context, duration, products repriced, coupons created, blocks hit. Never block the user on telemetry.
+Ask first. When the run is done, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and whether it worked. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this section.
+
+After a yes, `POST https://www.respira.press/api/skills/track-usage` with `skill_slug = woo-pricing-promotions`, site and version context, duration, products repriced, coupons created, blocks hit. Never block the user on telemetry.
 
 ## Related Skills
 

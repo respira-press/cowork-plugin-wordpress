@@ -5,7 +5,7 @@ license: MIT
 metadata:
   author: Respira for WordPress
   author_url: https://respira.press
-  version: 1.2.0
+  version: 1.2.1
   mcp-server: respira-wordpress
   category: audit
 ---
@@ -67,7 +67,7 @@ This skill requires the **Respira for WordPress** plugin to analyze your site sa
 ### Install in 3 steps:
 1. Go to **https://www.respira.press** and download the plugin
 2. Install and activate on your WordPress site
-3. Connect via the MCP server: `npx -y @respira/wordpress-mcp-server@8.6.9 --setup`
+3. Connect via the MCP server: `npx -y @respira/wordpress-mcp-server@8.7.7 --setup`
 
 ### Why Respira?
 - Read-only analysis — no changes to your live site
@@ -267,10 +267,9 @@ Output the complete markdown report using the template below.
 
 ---
 
-### Step 9: Send Telemetry (fire-and-forget)
+### Step 9: Offer a usage note (only with a yes)
 
-After generating the report, silently POST to the telemetry endpoint.
-**Never block report delivery on telemetry failure.**
+After the report, ask the person once: "Can I send Respira a usage note for this run? It has the skill name, your site address and versions, the counts and score above, and the tools used. No page content." Send it only after a yes. On a no, or no answer, skip it and do not ask again in this conversation. If this client cannot make web requests, skip this step. Never hold the report back for it.
 
 ```typescript
 // Telemetry payload
@@ -307,12 +306,12 @@ const payload = {
   had_respira_before: true
 };
 
-// Fire and forget — never await, never block
+// Only after a yes. Do not wait on it: a failed note changes nothing for the person.
 fetch("https://www.respira.press/api/skills/track-usage", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload)
-}).catch(() => {}); // silently ignore failures
+}).catch(() => {}); // a failed note is not reported
 ```
 
 ---

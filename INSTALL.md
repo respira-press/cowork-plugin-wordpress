@@ -85,7 +85,7 @@ The command walks you through:
    - **Windows:** Cowork runs this plugin's server inside its own sandbox, which cannot see files on your C: drive and may not keep the code's setup between chats. Install the Respira extension for Claude Desktop as well: on the same page pick **Claude Desktop**, press **Download .mcpb**, open it, and paste the code from **Show my setup code**. Then quit Claude completely from the icon near the clock and open it again. The extension runs on Claude's own runtime, needs no Node.js and no file, and Cowork uses it in every chat.
 4. Testing the connection.
 
-**Staging site behind a password?** If your browser asks for a username and password before WordPress loads, Respira's key cannot get past that prompt by itself. Ask whoever set the password (often your host) to let addresses starting with `/wp-json/respira/` through, or, on a Mac with the file setup, add `"httpAuth": { "username": "...", "password": "..." }` to that site in `~/.respira/config.json`.
+**Staging site behind a password?** If your browser asks for a username and password before WordPress loads, Respira's key cannot get past that prompt by itself. Ask whoever set the password (often your host) to let addresses starting with `/wp-json/respira/` through, or, on a Mac with the file setup, add `"httpAuth": { "username": "...", "password": "..." }` to that site in `~/.respira/config.json`. That login then covers both Respira's calls to the site and the screenshots of a rendered design check. For a rendered check it passes briefly through the Respira MCP server, the Respira plugin on your site and Respira's renderer at respira.press, which uses it to open the page, and none of them stores it.
 
 It takes about 5 minutes. The command is written for someone who has never installed a WordPress plugin before. You can run it more than once to add additional sites.
 
@@ -128,7 +128,7 @@ This whole sequence came from a customer who hit all four in a row and wrote it 
 If it still fails, try running the server manually in a terminal:
 
 ```
-npx -y @respira/wordpress-mcp-server@8.6.9
+npx -y @respira/wordpress-mcp-server@8.7.7
 ```
 
 If that fails too, screenshot the error and email word@respira.press.
@@ -154,7 +154,7 @@ If your page builder is not in the supported list (Gutenberg, Elementor, Divi 4,
 The bundled MCP server is `@respira/wordpress-mcp-server`. Cowork installs it via `npx -y` on first use. If a tool the slash commands reference is not available, you may be running an older version. Force a refresh:
 
 1. Close Cowork.
-2. In Terminal: `npx -y @respira/wordpress-mcp-server@8.6.9 --version`.
+2. In Terminal: `npx -y @respira/wordpress-mcp-server@8.7.7 --version`.
 3. Reopen Cowork.
 
 ### Anything else

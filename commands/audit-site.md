@@ -59,7 +59,9 @@ Group findings by page or by category, whichever makes the report easier to read
 
 For findings Respira can fix automatically (alt text, missing meta descriptions, heading order, some ADA fixes), offer:
 
-> "want me to fix the [N] alt text issues now? snapshot will be taken first."
+> "want me to fix the [N] alt text issues now?"
+
+Before you ask, say what protection applies. A fix made inside a page or post is saved as a snapshot first and can be restored. A change to a media library item, a plugin, a user or a menu has no snapshot unless the tool response shows one: say so in plain words, and offer to list the current values first so they can be put back by hand.
 
 Use `respira_apply_accessibility_fixes` for accessibility autofixes. For SEO and performance fixes, use the appropriate write tools (`respira_update_element`, `respira_update_module`, `respira_update_media`).
 
