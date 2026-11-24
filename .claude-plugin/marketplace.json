@@ -13,7 +13,7 @@
         "repo": "respira-press/cowork-plugin-wordpress"
       },
       "description": "Edit WordPress sites with Claude in the site's own page builder: Elementor, Divi, Bricks, Gutenberg and more. Page and post edits are saved as a snapshot first and can be restored, and by default edits to a published page land on a draft you approve.",
-      "version": "1.4.6",
+      "version": "1.4.7",
       "author": {
         "name": "Respira"
       },
